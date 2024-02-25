@@ -18,5 +18,6 @@ public:
     cpp_dec_float_50 factorial(int n);
     cpp_dec_float_50 divi_t(cpp_dec_float_50 x);
     cpp_dec_float_50 sin_t(int x);
+    cpp_dec_float_50 sinh_t(int x);
 };
 
