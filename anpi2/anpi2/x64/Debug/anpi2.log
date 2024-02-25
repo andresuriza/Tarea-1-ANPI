@@ -1,0 +1,4 @@
+﻿  funtras.cpp
+C:\Users\andres\Documents\TEC\ANPI\Tarea 1 - Grupo 7\Parte 1\anpi2\anpi2\funtras.cpp(67): warning C4715: 'Fun_tras::divi_t': not all control paths return a value
+C:\Users\andres\Documents\TEC\ANPI\Tarea 1 - Grupo 7\Parte 1\anpi2\anpi2\funtras.cpp(83): warning C4715: 'Fun_tras::sin_t': not all control paths return a value
+  anpi2.vcxproj -> C:\Users\andres\Documents\TEC\ANPI\Tarea 1 - Grupo 7\Parte 1\anpi2\x64\Debug\anpi2.exe
