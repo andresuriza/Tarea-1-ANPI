@@ -5,11 +5,14 @@
 using namespace std;
 using namespace boost::multiprecision;
 
-// TODO: tan, log, necesito las otras funciones, cos y ln (Andres)
+// TODO: tan, necesito cos inverso (Andres)
 
+    // Calculo del factorial de un numero n
+    // Estructura: factorial(int n)
+    // Parametros: n = numero a calcular factorial
     cpp_dec_float_50 Fun_tras::factorial(int n)
     {
-        n = abs(n);
+        n = abs(n); // Se obliga a numero a ser positivo
 
         if (n == 0 || n == 1) {
             return 1;
@@ -19,13 +22,16 @@ using namespace boost::multiprecision;
         }
     }
 
+    // Calculo del inverso de un numero x
+    // Estructura: divi_t(cpp_dec_float_50 x)
+    // Parametros: x = numero de punto flotante de precision de 50 decimales a calcular su inverso
     cpp_dec_float_50 Fun_tras::divi_t(cpp_dec_float_50 x) {
         try {
-            if (x == 0) {
+            if (x <= 0) {
                 throw -1;
             }
             else {
-                cpp_dec_float_50 x_0 = 0;
+                cpp_dec_float_50 x_0 = 0;   // Valor inicial
 
                 if (0 < x <= factorial(20))
                 {
@@ -56,8 +62,8 @@ using namespace boost::multiprecision;
 
                 for (int n = 0; n <= iterMax; n++)
                 {
-                    cpp_dec_float_50 sk_1 = x_0 * (2 - x * x_0);
-                    cpp_dec_float_50 stop = sk_1 - x_0;
+                    cpp_dec_float_50 sk_1 = x_0 * (2 - x * x_0); // Valor actual de sumatoria
+                    cpp_dec_float_50 stop = sk_1 - x_0; // Criterio de parada
                     x_0 = sk_1;
 
                     if (abs(stop) < tol * abs(sk_1)) {
@@ -70,18 +76,21 @@ using namespace boost::multiprecision;
 
         catch (int error)
         {
-            cout << "Error: division por 0" << endl;
+            cout << "Error: x menor o igual a 0" << endl;
             return -1;
         }
     }
 
+    // Calculo del seno de un numero x
+    // Estructura: sin_t(int x)
+    // Parametros: x = numero entero a calcular seno
     cpp_dec_float_50 Fun_tras::sin_t(int x) {
-        cpp_dec_float_50 sk = 0;
+        cpp_dec_float_50 sk = 0;    // Valor anterior de sumatoria
 
         for (int n = 0; n <= iterMax; n++)
         {
-            cpp_dec_float_50 sk_1 = sk + pow(-1, n) * pow(x, (2 * n + 1)) * divi_t((factorial(2 * n + 1)));
-            cpp_dec_float_50 stop = sk_1 - sk;
+            cpp_dec_float_50 sk_1 = sk + pow(-1, n) * pow(x, (2 * n + 1)) * divi_t((factorial(2 * n + 1))); // Valor actual de sumatoria
+            cpp_dec_float_50 stop = sk_1 - sk;  // Criterio de parada
             sk = sk_1;
 
             if (abs(stop) < tol) {
@@ -91,13 +100,16 @@ using namespace boost::multiprecision;
         }
     }
 
+    // Calculo del seno hiperbolico de un numero x
+    // Estructura: sinh_t(int x)
+    // Parametros: x = numero entero a calcular seno hiperbolico
     cpp_dec_float_50 Fun_tras::sinh_t(int x) {
-        cpp_dec_float_50 sk = 0;
+        cpp_dec_float_50 sk = 0; // Valor anterior de sumatoria
 
         for (int n = 0; n <= iterMax; n++)
         {
-            cpp_dec_float_50 sk_1 = sk + pow(x, (2 * n + 1)) * divi_t(factorial(2 * n + 1));
-            cpp_dec_float_50 stop = sk_1 - sk;
+            cpp_dec_float_50 sk_1 = sk + pow(x, (2 * n + 1)) * divi_t(factorial(2 * n + 1)); // Valor actual de sumatoria
+            cpp_dec_float_50 stop = sk_1 - sk;  // Criterio de parada
             sk = sk_1;
 
             if (abs(stop) < tol) {
@@ -153,15 +165,32 @@ using namespace boost::multiprecision;
         }
     }
 
+    // Calculo del logaritmo de un numero x, base y
+    // Estructura: log_t(int x, int y)
+    // Parametros: x = numero entero a calcular logaritmo
+    // y = base entera del logaritmo
+    cpp_dec_float_50 Fun_tras::log_t(int x, int y) {
+        try {
+            if (x <= 0) {
+                throw - 1;
+            }
+            else {
+                return ln_t(x) * divi_t(ln_t(y));
+            }
+        }
+        catch (int error)
+        {
+            cout << "Error: numero menor o igual a 0" << endl;
+            return -1;
+        }
+    }
+
 int main(int argc, char const* argv[])
 {
     Fun_tras calc1;
 
-    cpp_dec_float_50 cos_result = calc1.cos_t(4); // cos(4)
+    cpp_dec_float_50 cos_result = calc1.sin_t(4);
     cout << setprecision(std::numeric_limits<cpp_dec_float_50>::max_digits10) << cos_result << endl;
-
-    cpp_dec_float_50 ln_result = calc1.ln_t(1); // ln(1)
-    cout << setprecision(std::numeric_limits<cpp_dec_float_50>::max_digits10) << ln_result << endl;
 
     return 0;
 }
