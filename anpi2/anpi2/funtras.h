@@ -22,7 +22,7 @@ public:
     cpp_dec_float_50 sinh_t(int x);
     cpp_dec_float_50 cos_t(cpp_dec_float_50 x);
     cpp_dec_float_50 ln_t(cpp_dec_float_50 x);
-    cpp_dec_float_50 abs_t(cpp_dec_float_50 x);
+
 
 };
 

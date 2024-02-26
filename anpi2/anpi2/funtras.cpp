@@ -137,12 +137,6 @@ using namespace boost::multiprecision;
 
 
 
-    cpp_dec_float_50 Fun_tras::abs_t(const cpp_dec_float_50& x) {
-        if (x < 0)
-            return -1 * x;
-        else
-            return x;
-    }
 
 
     cpp_dec_float_50 Fun_tras::ln_t(cpp_dec_float_50 a) {
@@ -189,11 +183,11 @@ int main(int argc, char const* argv[])
 
 
     // Prueba para la función cos_t con π/3 como argumento
-    cpp_dec_float_50 cos_result = calc1.cos_t(4); // cos(4)
+    cpp_dec_float_50 cos_result = calc1.cos_t(1); // cos(4)
     cout  << setprecision(std::numeric_limits<cpp_dec_float_50>::max_digits10) << cos_result << endl;
 
     // Prueba para la función ln_t con e (base de los logaritmos naturales) como argumento
-    cpp_dec_float_50 ln_result = calc1.ln_t(6); // ln(e)
+    cpp_dec_float_50 ln_result = calc1.ln_t(1); // ln(e)
     cout << setprecision(std::numeric_limits<cpp_dec_float_50>::max_digits10) << ln_result << endl;
 
 
