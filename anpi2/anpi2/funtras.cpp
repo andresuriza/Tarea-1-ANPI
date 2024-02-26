@@ -107,90 +107,61 @@ using namespace boost::multiprecision;
         }
     }
 
-
-
-
-    //cos
-
-
-    cpp_dec_float_50 Fun_tras::cos_t(cpp_dec_float_50 a) {
-        // Convertir a radianes
-        a = a * pi_t / 3;
-
-        cpp_dec_float_50 sum = 1; // El primer término de la serie de Taylor para cos(a) es 1.
-        cpp_dec_float_50 term = 1; // Inicializamos el término actual de la serie.
+    cpp_dec_float_50 Fun_tras::cos_t(int x) {
         cpp_dec_float_50 prev_sum = 0; // Variable para almacenar la suma anterior y comprobar la convergencia.
 
         // Iterar hasta que la serie converja o se alcance el número máximo de iteraciones.
-        for (int n = 1; n <= iterMax && abs(term) >= tol; ++n) {
-            term *= -a * a / ((2 * n - 1) * (2 * n)); // Actualizar el término actual de la serie.
+        for (int n = 0; n <= iterMax; n++) {
+            cpp_dec_float_50 sum = prev_sum + (pow(-1, n) * pow(x, 2 * n) * divi_t(factorial(2 * n)));
+            cpp_dec_float_50 stop = sum - prev_sum;
             prev_sum = sum; // Guardar la suma anterior antes de añadir el nuevo término.
-            sum += term; // Añadir el nuevo término a la suma acumulativa.
 
-            if (abs(sum - prev_sum) < tol) {
+            if (abs(stop) < tol) {
+                return prev_sum;
                 break;
             }
         }
-
-        return sum;
     }
 
+    cpp_dec_float_50 Fun_tras::ln_t(int x) {
+        try {
+            if (x <= 0) {
+                throw - 1;
+            }
 
+            else {
 
+                cpp_dec_float_50 sk = 0;
 
+                for (int n = 0; n <= iterMax; n++)
+                {
+                    cpp_dec_float_50 sk_1 = sk + divi_t(2 * n + 1) * pow((x - 1) * divi_t(x + 1), 2 * n);
+                    cpp_dec_float_50 stop = sk_1 - sk;
+                    sk = sk_1;
 
-    cpp_dec_float_50 Fun_tras::ln_t(cpp_dec_float_50 a) {
-        if (a <= 0) {
-            cout << "Error: 'a' debe ser mayor que 0" << endl;
-            return cpp_dec_float_50(0); // Retornar 0 para indicar un error.
-        }
-
-        cpp_dec_float_50 factor = 2 * (a - 1) / (a + 1);
-
-        cpp_dec_float_50 x = (a - 1) / (a + 1);
-        cpp_dec_float_50 x_pow_2n = x; // Inicia con x^1 ya que n=0.
-
-        cpp_dec_float_50 sum = x; // Inicializar con el primer término de la serie.
-
-        cpp_dec_float_50 prev_sum = 0;
-
-        for (int n = 1; n <= iterMax; ++n) {
-            x_pow_2n *= x * x;
-
-         
-            cpp_dec_float_50 current_term = x_pow_2n / (2 * n + 1);
-
-            prev_sum = sum;
-            sum += current_term;
-
-            if (abs(current_term) < tol) {
-                break;
+                    if (abs(stop) < tol) {
+                        return 2 * (x - 1) * divi_t(x + 1) * sk;
+                        break;
+                    }
+                }
             }
         }
-
-        return factor * sum;
+        catch (int error)
+        {
+            cout << "Error: numero menor o igual a 0" << endl;
+            return -1;
+        }
     }
-
-
-
 
 int main(int argc, char const* argv[])
 {
     Fun_tras calc1;
-    cpp_dec_float_50 result = calc1.sinh_t(3); // Caso de prueba
 
-    cout << setprecision(std::numeric_limits<cpp_dec_float_50>::max_digits10) << result << endl;
+    cpp_dec_float_50 cos_result = calc1.cos_t(4); // cos(4)
+    cout << setprecision(std::numeric_limits<cpp_dec_float_50>::max_digits10) << cos_result << endl;
 
-
-    // Prueba para la función cos_t con π/3 como argumento
-    cpp_dec_float_50 cos_result = calc1.cos_t(0); // cos(4)
-    cout  << setprecision(std::numeric_limits<cpp_dec_float_50>::max_digits10) << cos_result << endl;
-
-    // Prueba para la función ln_t con e (base de los logaritmos naturales) como argumento
-    cpp_dec_float_50 ln_result = calc1.ln_t(1); // ln(e)
+    cpp_dec_float_50 ln_result = calc1.ln_t(1); // ln(1)
     cout << setprecision(std::numeric_limits<cpp_dec_float_50>::max_digits10) << ln_result << endl;
-
-
 
     return 0;
 }

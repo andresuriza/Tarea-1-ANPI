@@ -1,6 +1,9 @@
 ﻿  funtras.cpp
 C:\Users\andres\Documents\TEC\ANPI\tarea1 git\Tarea-1-ANPI\anpi2\anpi2\funtras.cpp(71,20): warning C4101: 'error': unreferenced local variable
+C:\Users\andres\Documents\TEC\ANPI\tarea1 git\Tarea-1-ANPI\anpi2\anpi2\funtras.cpp(149,20): warning C4101: 'error': unreferenced local variable
 C:\Users\andres\Documents\TEC\ANPI\tarea1 git\Tarea-1-ANPI\anpi2\anpi2\funtras.cpp(108): warning C4715: 'Fun_tras::sinh_t': not all control paths return a value
 C:\Users\andres\Documents\TEC\ANPI\tarea1 git\Tarea-1-ANPI\anpi2\anpi2\funtras.cpp(92): warning C4715: 'Fun_tras::sin_t': not all control paths return a value
 C:\Users\andres\Documents\TEC\ANPI\tarea1 git\Tarea-1-ANPI\anpi2\anpi2\funtras.cpp(76): warning C4715: 'Fun_tras::divi_t': not all control paths return a value
+C:\Users\andres\Documents\TEC\ANPI\tarea1 git\Tarea-1-ANPI\anpi2\anpi2\funtras.cpp(124): warning C4715: 'Fun_tras::cos_t': not all control paths return a value
+C:\Users\andres\Documents\TEC\ANPI\tarea1 git\Tarea-1-ANPI\anpi2\anpi2\funtras.cpp(154): warning C4715: 'Fun_tras::ln_t': not all control paths return a value
   anpi2.vcxproj -> C:\Users\andres\Documents\TEC\ANPI\tarea1 git\Tarea-1-ANPI\anpi2\x64\Debug\anpi2.exe
