@@ -114,7 +114,9 @@ using namespace boost::multiprecision;
 
 
     cpp_dec_float_50 Fun_tras::cos_t(cpp_dec_float_50 a) {
- 
+        // Convertir a radianes
+        a = a * pi_t / 3;
+
         cpp_dec_float_50 sum = 1; // El primer término de la serie de Taylor para cos(a) es 1.
         cpp_dec_float_50 term = 1; // Inicializamos el término actual de la serie.
         cpp_dec_float_50 prev_sum = 0; // Variable para almacenar la suma anterior y comprobar la convergencia.
@@ -125,7 +127,6 @@ using namespace boost::multiprecision;
             prev_sum = sum; // Guardar la suma anterior antes de añadir el nuevo término.
             sum += term; // Añadir el nuevo término a la suma acumulativa.
 
-
             if (abs(sum - prev_sum) < tol) {
                 break;
             }
@@ -133,7 +134,6 @@ using namespace boost::multiprecision;
 
         return sum;
     }
-
 
 
 
@@ -183,7 +183,7 @@ int main(int argc, char const* argv[])
 
 
     // Prueba para la función cos_t con π/3 como argumento
-    cpp_dec_float_50 cos_result = calc1.cos_t(1); // cos(4)
+    cpp_dec_float_50 cos_result = calc1.cos_t(0); // cos(4)
     cout  << setprecision(std::numeric_limits<cpp_dec_float_50>::max_digits10) << cos_result << endl;
 
     // Prueba para la función ln_t con e (base de los logaritmos naturales) como argumento
