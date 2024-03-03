@@ -185,6 +185,82 @@ using namespace boost::multiprecision;
         }
     }
 
+    /*
+    Calculo de tangente h
+    Estructura: tanh_t(int x) VER SI NECESITA FLOATS
+    Parametros: x = numero entero a calcular logaritmo
+    sinh(x)/cosh(x)
+   
+    cpp_dec_float_50 Fun_tras::tanh_t(int x){
+
+    }
+
+    TODO: ocupo la funcion cosh(x)
+     */
+
+     /*
+     Calculo de arctan(x)
+     Estructura: atan_t(x)
+     Parametros: x = numero entero a calcular logaritmo
+     TODO: ver si esta funcion puede admitir floats
+     */
+
+     cpp_dec_float_50 Fun_tras::atan_t(int x){
+        if (-1 <= x <= 1)
+        {
+            cpp_dec_float_50 prev_sum = 0;
+            for (int i = 0; i < iterMax; i++)
+            {
+                cpp_dec_float_50 sum = prev_sum + (pow(-1, i) + pow(x, 2*i+1) * divi_t(2*i+1))
+                
+                cpp_dec_float_50 stop = sum - prev_sum;
+                prev_sum = sum; // Guardar la suma anterior antes de añadir el nuevo término.
+
+                if (abs(stop) < tol) {
+                    return prev_sum;
+                    break;
+                }
+                
+            }
+            
+        } else if (X > 1)
+        {
+            cpp_dec_float_50 prev_sum = 0;
+            for (int i = 0; i < iterMax; i++)
+            {
+                cpp_dec_float_50 sum = prev_sum + (1 * divi_t((2*i+1)*pow(x, 2*i-1)))
+                
+                cpp_dec_float_50 stop = sum - prev_sum;
+                prev_sum = sum; // Guardar la suma anterior antes de añadir el nuevo término.
+
+                if (abs(stop) < tol) {
+                    return pi_t * divi_t(2) - prev_sum;
+                    break;
+                }
+                
+            }
+        } else if (x < -1)
+        {
+            cpp_dec_float_50 prev_sum = 0;
+            for (int i = 0; i < iterMax; i++)
+            {
+                cpp_dec_float_50 sum = prev_sum + (1 * divi_t((2*i+1)*pow(x, 2*i-1)))
+                
+                cpp_dec_float_50 stop = sum - prev_sum;
+                prev_sum = sum; // Guardar la suma anterior antes de añadir el nuevo término.
+
+                if (abs(stop) < tol) {
+                    return -1 * pi_t * divi_t(2) - prev_sum;
+                    break;
+                }
+                
+            }
+        }
+        
+        
+        
+     }
+
 int main(int argc, char const* argv[])
 {
     Fun_tras calc1;

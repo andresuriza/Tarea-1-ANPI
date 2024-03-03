@@ -23,7 +23,11 @@ public:
     cpp_dec_float_50 cos_t(int x);
     cpp_dec_float_50 ln_t(int x);
     cpp_dec_float_50 log_t(int x, int y);
-
+    cpp_dec_float_50 tanh_t(int x);
+    cpp_dec_float_50 root_t(int x, int y);
+    cpp_dec_float_50 atan_t(int x);
+    cpp_dec_float_50 sec_t(int x);
+    cpp_dec_float_50 csc_t(int x);
 };
 
 
