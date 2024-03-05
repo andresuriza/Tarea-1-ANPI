@@ -10,6 +10,7 @@ using namespace boost::multiprecision;
     // Calculo del factorial de un numero n
     // Estructura: factorial(int n)
     // Parametros: n = numero a calcular factorial
+    // TODO: quitar recursion y poner un for. Esta durand mucho tiempo 
     cpp_dec_float_50 Fun_tras::factorial(int n)
     {
         n = abs(n); // Se obliga a numero a ser positivo
@@ -25,6 +26,7 @@ using namespace boost::multiprecision;
     // Calculo del inverso de un numero x
     // Estructura: divi_t(cpp_dec_float_50 x)
     // Parametros: x = numero de punto flotante de precision de 50 decimales a calcular su inverso
+    // TODO: Revisar esta porque no esta funcionando
     cpp_dec_float_50 Fun_tras::divi_t(cpp_dec_float_50 x) {
         try {
             if (x <= 0) {
@@ -265,7 +267,7 @@ int main(int argc, char const* argv[])
 {
     Fun_tras calc1;
 
-    cpp_dec_float_50 cos_result = calc1.divi_t(10);
+    cpp_dec_float_50 cos_result = calc1.factorial(9);
     cout << setprecision(std::numeric_limits<cpp_dec_float_50>::max_digits10) << cos_result << endl;
     
     return 0;
