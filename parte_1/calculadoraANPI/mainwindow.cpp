@@ -21,7 +21,10 @@ void MainWindow::on_helpButton_clicked()
 
 void MainWindow::on_pushButton_clicked()
 {
-
+    ui->resultTextBrowser->clear();
+    ui->xInputField->clear();
+    ui->yInputField->clear();
+    // TODO: limpiar las variables en la logica
 }
 
 void MainWindow::on_senhButton_clicked()

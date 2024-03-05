@@ -211,7 +211,7 @@ using namespace boost::multiprecision;
             cpp_dec_float_50 prev_sum = 0;
             for (int i = 0; i < iterMax; i++)
             {
-                cpp_dec_float_50 sum = prev_sum + (pow(-1, i) + pow(x, 2*i+1) * divi_t(2*i+1))
+                cpp_dec_float_50 sum = prev_sum + (pow(-1, i) + pow(x, 2*i+1) * divi_t(2*i+1));
                 
                 cpp_dec_float_50 stop = sum - prev_sum;
                 prev_sum = sum; // Guardar la suma anterior antes de añadir el nuevo término.
@@ -223,12 +223,12 @@ using namespace boost::multiprecision;
                 
             }
             
-        } else if (X > 1)
+        } else if (x > 1)
         {
             cpp_dec_float_50 prev_sum = 0;
             for (int i = 0; i < iterMax; i++)
             {
-                cpp_dec_float_50 sum = prev_sum + (1 * divi_t((2*i+1)*pow(x, 2*i-1)))
+                cpp_dec_float_50 sum = prev_sum + (1 * divi_t((2 * i + 1) * pow(x, 2 * i - 1)));
                 
                 cpp_dec_float_50 stop = sum - prev_sum;
                 prev_sum = sum; // Guardar la suma anterior antes de añadir el nuevo término.
@@ -244,7 +244,7 @@ using namespace boost::multiprecision;
             cpp_dec_float_50 prev_sum = 0;
             for (int i = 0; i < iterMax; i++)
             {
-                cpp_dec_float_50 sum = prev_sum + (1 * divi_t((2*i+1)*pow(x, 2*i-1)))
+                cpp_dec_float_50 sum = prev_sum + (1 * divi_t((2 * i + 1) * pow(x, 2 * i - 1)));
                 
                 cpp_dec_float_50 stop = sum - prev_sum;
                 prev_sum = sum; // Guardar la suma anterior antes de añadir el nuevo término.
@@ -265,8 +265,8 @@ int main(int argc, char const* argv[])
 {
     Fun_tras calc1;
 
-    cpp_dec_float_50 cos_result = calc1.sin_t(4);
+    cpp_dec_float_50 cos_result = calc1.divi_t(10);
     cout << setprecision(std::numeric_limits<cpp_dec_float_50>::max_digits10) << cos_result << endl;
-
+    
     return 0;
 }
