@@ -10,17 +10,14 @@ using namespace boost::multiprecision;
     // Calculo del factorial de un numero n
     // Estructura: factorial(int n)
     // Parametros: n = numero a calcular factorial
-    // TODO: quitar recursion y poner un for. Esta durand mucho tiempo 
     cpp_dec_float_50 Fun_tras::factorial(int n)
     {
         n = abs(n); // Se obliga a numero a ser positivo
-
-        if (n == 0 || n == 1) {
-            return 1;
-        }
-        else {
-            return n * factorial(n - 1);
-        }
+        cpp_dec_float_50 result = 1;
+        int i;
+        for (i = 2; i <= n; i++)
+            result *= i;
+        return result;
     }
 
     // Calculo del inverso de un numero x
@@ -267,7 +264,7 @@ int main(int argc, char const* argv[])
 {
     Fun_tras calc1;
 
-    cpp_dec_float_50 cos_result = calc1.factorial(9);
+    cpp_dec_float_50 cos_result = calc1.factorial(8);
     cout << setprecision(std::numeric_limits<cpp_dec_float_50>::max_digits10) << cos_result << endl;
     
     return 0;

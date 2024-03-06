@@ -1,12 +1,12 @@
 ﻿  funtras.cpp
-C:\Users\User\Documents\CursoANPI\Tarea-1-ANPI\anpi2\anpi2\funtras.cpp(79,20): warning C4101: 'error': variable local sin referencia
-C:\Users\User\Documents\CursoANPI\Tarea-1-ANPI\anpi2\anpi2\funtras.cpp(163,20): warning C4101: 'error': variable local sin referencia
-C:\Users\User\Documents\CursoANPI\Tarea-1-ANPI\anpi2\anpi2\funtras.cpp(183,20): warning C4101: 'error': variable local sin referencia
-C:\Users\User\Documents\CursoANPI\Tarea-1-ANPI\anpi2\anpi2\funtras.cpp(211,16): warning C4804: '<=': uso no seguro del tipo 'bool' en la operación
-C:\Users\User\Documents\CursoANPI\Tarea-1-ANPI\anpi2\anpi2\funtras.cpp(103,1): warning C4715: 'Fun_tras::sin_t': no todas las rutas de acceso de control devuelven un valor
-C:\Users\User\Documents\CursoANPI\Tarea-1-ANPI\anpi2\anpi2\funtras.cpp(122,1): warning C4715: 'Fun_tras::sinh_t': no todas las rutas de acceso de control devuelven un valor
-C:\Users\User\Documents\CursoANPI\Tarea-1-ANPI\anpi2\anpi2\funtras.cpp(84,1): warning C4715: 'Fun_tras::divi_t': no todas las rutas de acceso de control devuelven un valor
-C:\Users\User\Documents\CursoANPI\Tarea-1-ANPI\anpi2\anpi2\funtras.cpp(138,1): warning C4715: 'Fun_tras::cos_t': no todas las rutas de acceso de control devuelven un valor
-C:\Users\User\Documents\CursoANPI\Tarea-1-ANPI\anpi2\anpi2\funtras.cpp(168,1): warning C4715: 'Fun_tras::ln_t': no todas las rutas de acceso de control devuelven un valor
-C:\Users\User\Documents\CursoANPI\Tarea-1-ANPI\anpi2\anpi2\funtras.cpp(264,1): warning C4715: 'Fun_tras::atan_t': no todas las rutas de acceso de control devuelven un valor
+C:\Users\User\Documents\CursoANPI\Tarea-1-ANPI\anpi2\anpi2\funtras.cpp(84,20): warning C4101: 'error': variable local sin referencia
+C:\Users\User\Documents\CursoANPI\Tarea-1-ANPI\anpi2\anpi2\funtras.cpp(168,20): warning C4101: 'error': variable local sin referencia
+C:\Users\User\Documents\CursoANPI\Tarea-1-ANPI\anpi2\anpi2\funtras.cpp(188,20): warning C4101: 'error': variable local sin referencia
+C:\Users\User\Documents\CursoANPI\Tarea-1-ANPI\anpi2\anpi2\funtras.cpp(216,16): warning C4804: '<=': uso no seguro del tipo 'bool' en la operación
+C:\Users\User\Documents\CursoANPI\Tarea-1-ANPI\anpi2\anpi2\funtras.cpp(108,1): warning C4715: 'Fun_tras::sin_t': no todas las rutas de acceso de control devuelven un valor
+C:\Users\User\Documents\CursoANPI\Tarea-1-ANPI\anpi2\anpi2\funtras.cpp(127,1): warning C4715: 'Fun_tras::sinh_t': no todas las rutas de acceso de control devuelven un valor
+C:\Users\User\Documents\CursoANPI\Tarea-1-ANPI\anpi2\anpi2\funtras.cpp(89,1): warning C4715: 'Fun_tras::divi_t': no todas las rutas de acceso de control devuelven un valor
+C:\Users\User\Documents\CursoANPI\Tarea-1-ANPI\anpi2\anpi2\funtras.cpp(143,1): warning C4715: 'Fun_tras::cos_t': no todas las rutas de acceso de control devuelven un valor
+C:\Users\User\Documents\CursoANPI\Tarea-1-ANPI\anpi2\anpi2\funtras.cpp(173,1): warning C4715: 'Fun_tras::ln_t': no todas las rutas de acceso de control devuelven un valor
+C:\Users\User\Documents\CursoANPI\Tarea-1-ANPI\anpi2\anpi2\funtras.cpp(269,1): warning C4715: 'Fun_tras::atan_t': no todas las rutas de acceso de control devuelven un valor
   anpi2.vcxproj -> C:\Users\User\Documents\CursoANPI\Tarea-1-ANPI\anpi2\x64\Debug\anpi2.exe
