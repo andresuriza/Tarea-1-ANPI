@@ -135,7 +135,22 @@ using namespace boost::multiprecision;
             }
         }
     }
+    
+    cpp_dec_float_50 Fun_tras::cosh_t(cpp_dec_float_50 x) {
+        cpp_dec_float_50 sk = 0; // Valor anterior de sumatoria
 
+        for (int n = 0; n <= iterMax; n++)
+        {
+            cpp_dec_float_50 sk_1 = sk + pow(x, (2 * n)) * divi_t(factorial(2 * n)); // Valor actual de sumatoria
+            cpp_dec_float_50 stop = sk_1 - sk;  // Criterio de parada
+            sk = sk_1;
+
+            if (abs(stop) < tol) {
+                return sk;
+                break;
+            }
+        }
+    }
     cpp_dec_float_50 Fun_tras::ln_t(int x) {
         try {
             if (x <= 0) {
@@ -284,7 +299,7 @@ int main(int argc, char const* argv[])
 {
     Fun_tras calc1;
 
-    cpp_dec_float_50 cos_result = calc1.sec_t(1);
+    cpp_dec_float_50 cos_result = calc1.cosh_t(1);
     cout << setprecision(std::numeric_limits<cpp_dec_float_50>::max_digits10) << cos_result << endl;
     
     return 0;
