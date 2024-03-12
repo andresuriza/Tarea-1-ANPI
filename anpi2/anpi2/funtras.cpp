@@ -170,6 +170,12 @@ using namespace boost::multiprecision;
             }
         }
     }
+
+    // TODO: verificar dominio 
+    cpp_dec_float_50 Fun_tras::acos_t(cpp_dec_float_50 x) {
+        cpp_dec_float_50 temp_asin_t = asin_t(x);
+        return (pi_t * divi_t(2)) - temp_asin_t;
+    }
     cpp_dec_float_50 Fun_tras::ln_t(int x) {
         try {
             if (x <= 0) {
@@ -256,7 +262,7 @@ using namespace boost::multiprecision;
                
 
                 if (abs(stop) < tol) {
-                    return pi_t * divi_t(2) - prev_sum;
+                    return prev_sum;
                     break;
                 }
                 else {
@@ -270,14 +276,19 @@ using namespace boost::multiprecision;
             cpp_dec_float_50 prev_sum = 0;
             for (int i = 0; i < iterMax; i++)
             {
-                cpp_dec_float_50 sum = prev_sum + (1 * divi_t((2 * i + 1) * pow(x, (2 * i - 1))));
-                
-                cpp_dec_float_50 stop = sum - prev_sum;
-                prev_sum = sum; // Guardar la suma anterior antes de añadir el nuevo término.
+                cpp_dec_float_50 sum = prev_sum + pow(-1,i)  * divi_t((2 * i + 1) * pow(x, (2 * i - 1)));
+
+                cpp_dec_float_50 s_k = pi_t * divi_t(2) - prev_sum;
+                cpp_dec_float_50 s_k_1 = pi_t * divi_t(2) - sum;
+
+                cpp_dec_float_50 stop = s_k_1 - s_k;
 
                 if (abs(stop) < tol) {
                     return pi_t * divi_t(2) - prev_sum;
                     break;
+                }
+                else {
+                    prev_sum = sum; // Guardar la suma anterior antes de añadir el nuevo término.
                 }
                 
             }
@@ -316,16 +327,30 @@ using namespace boost::multiprecision;
              cout << "Error sec_t" << endl;
          }
          else {
-             return 1 * divi_t(cos_t(x));
+             return 1 * divi_t(temp_cos_t);
          }
          
+     }
+
+     /*
+        * TODO: Verificar el dominio de la funcion
+        */
+     cpp_dec_float_50 Fun_tras::csc_t(cpp_dec_float_50 x) {
+         cpp_dec_float_50 temp_sin_t = sin_t(x);
+         if (temp_sin_t == 0) {
+             cout << "Error sec_t" << endl;
+         }
+         else {
+             return 1 * divi_t(temp_sin_t);
+         }
+
      }
 
 int main(int argc, char const* argv[])
 {
     Fun_tras calc1;
 
-    cpp_dec_float_50 cos_result = calc1.tan_t(1);
+    cpp_dec_float_50 cos_result = calc1.acos_t(0.5);
     cout << setprecision(std::numeric_limits<cpp_dec_float_50>::max_digits10) << cos_result << endl;
     
     return 0;
