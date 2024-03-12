@@ -5,12 +5,26 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+    bool xSelected = false;
+    bool ySelected = false;
     ui->setupUi(this);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::inputSelected(bool selectedBox, QString num){
+    if (selectedBox){
+        QString tempText = ui->xInputField->toPlainText();
+        tempText.append(num);
+        ui->xInputField->setPlainText(tempText);
+    } else {
+        QString tempText = ui->yInputField->toPlainText();
+        tempText.append(num);
+        ui->yInputField->setPlainText(tempText);
+    }
 }
 
 void MainWindow::on_helpButton_clicked()
@@ -153,55 +167,55 @@ void MainWindow::on_factorialButton_clicked()
 
 void MainWindow::on_sevenButton_clicked()
 {
-
+    inputSelected(this->xSelected, "7");
 }
 
 
 void MainWindow::on_eightButton_clicked()
 {
-
+    inputSelected(this->xSelected, "8");
 }
 
 
 void MainWindow::on_nineButton_clicked()
 {
-
+    inputSelected(this->xSelected, "9");
 }
 
 
 void MainWindow::on_fourButton_clicked()
 {
-
+    inputSelected(this->xSelected, "4");
 }
 
 
 void MainWindow::on_fiveButton_clicked()
 {
-
+    inputSelected(this->xSelected, "5");
 }
 
 
 void MainWindow::on_sixButton_clicked()
 {
-
+    inputSelected(this->xSelected, "6");
 }
 
 
 void MainWindow::on_oneButton_clicked()
 {
-
+    inputSelected(this->xSelected, "1");
 }
 
 
 void MainWindow::on_twoButton_clicked()
 {
-
+    inputSelected(this->xSelected, "2");
 }
 
 
 void MainWindow::on_threeButton_clicked()
 {
-
+    inputSelected(this->xSelected, "3");
 }
 
 
@@ -213,12 +227,24 @@ void MainWindow::on_piButton_clicked()
 
 void MainWindow::on_zeroButton_clicked()
 {
-
+    inputSelected(this->xSelected, "0");
 }
 
 
 void MainWindow::on_pushButton_23_clicked()
 {
 
+}
+
+
+void MainWindow::on_xSelectionButton_clicked()
+{
+    this->xSelected = true;
+}
+
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    this->xSelected = false;
 }
 

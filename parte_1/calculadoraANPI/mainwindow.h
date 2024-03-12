@@ -14,6 +14,8 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    bool xSelected;
+    void inputSelected(bool selectedBox, QString num);
 
 private slots:
     void on_senhButton_clicked();
@@ -85,6 +87,10 @@ private slots:
     void on_zeroButton_clicked();
 
     void on_pushButton_23_clicked();
+
+    void on_xSelectionButton_clicked();
+
+    void on_pushButton_2_clicked();
 
 private:
     Ui::MainWindow *ui;

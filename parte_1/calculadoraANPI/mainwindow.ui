@@ -67,10 +67,10 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_14">
           <item>
-           <widget class="QLabel" name="xLabel">
+           <widget class="QPushButton" name="xSelectionButton">
             <property name="font">
              <font>
-              <family>Segoe UI</family>
+              <family>Sitka Display</family>
               <pointsize>15</pointsize>
              </font>
             </property>
@@ -106,10 +106,10 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_13">
           <item>
-           <widget class="QLabel" name="yLabel">
+           <widget class="QPushButton" name="pushButton_2">
             <property name="font">
              <font>
-              <family>Segoe UI</family>
+              <family>Sitka Display</family>
               <pointsize>15</pointsize>
              </font>
             </property>

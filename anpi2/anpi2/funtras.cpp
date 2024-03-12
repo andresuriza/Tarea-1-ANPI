@@ -89,8 +89,10 @@ using namespace boost::multiprecision;
         for (int n = 0; n <= iterMax; n++)
         {
             cpp_dec_float_50 sk_1 = sk + pow(-1, n) * pow(x, (2 * n + 1)) * divi_t((factorial(2 * n + 1))); // Valor actual de sumatoria
+            cout << sk_1 << endl;
             cpp_dec_float_50 stop = sk_1 - sk;  // Criterio de parada
             sk = sk_1;
+            cout << stop << endl;
 
             if (abs(stop) < tol) {
                 return sk;
@@ -118,7 +120,7 @@ using namespace boost::multiprecision;
         }
     }
 
-    cpp_dec_float_50 Fun_tras::cos_t(int x) {
+    cpp_dec_float_50 Fun_tras::cos_t(cpp_dec_float_50 x) {
         cpp_dec_float_50 prev_sum = 0; // Variable para almacenar la suma anterior y comprobar la convergencia.
 
         // Iterar hasta que la serie converja o se alcance el número máximo de iteraciones.
@@ -204,30 +206,35 @@ using namespace boost::multiprecision;
      TODO: ver si esta funcion puede admitir floats
      */
 
-     cpp_dec_float_50 Fun_tras::atan_t(int x){
-        if (-1 <= x <= 1)
+     cpp_dec_float_50 Fun_tras::atan_t(cpp_dec_float_50 x){
+        if (x >= -1 && x <= 1)
         {
             cpp_dec_float_50 prev_sum = 0;
-            for (int i = 0; i < iterMax; i++)
+
+            for (int n = 0; n <= iterMax; n++)
             {
-                cpp_dec_float_50 sum = prev_sum + (pow(-1, i) + pow(x, 2*i+1) * divi_t(2*i+1));
-                
+                cpp_dec_float_50 sum = prev_sum + pow(-1, n) * pow(x, (2 * n + 1)) * divi_t((2 * n + 1));
+                cout << sum << endl;
                 cpp_dec_float_50 stop = sum - prev_sum;
-                prev_sum = sum; // Guardar la suma anterior antes de añadir el nuevo término.
+                cout << stop << endl;
+               
 
                 if (abs(stop) < tol) {
-                    return prev_sum;
+                    return pi_t * divi_t(2) - prev_sum;
                     break;
                 }
-                
+                else {
+                    prev_sum = sum; // Guardar la suma anterior antes de añadir el nuevo término.
+                }
             }
-            
-        } else if (x > 1)
+
+        }
+        if (x > 1)
         {
             cpp_dec_float_50 prev_sum = 0;
             for (int i = 0; i < iterMax; i++)
             {
-                cpp_dec_float_50 sum = prev_sum + (1 * divi_t((2 * i + 1) * pow(x, 2 * i - 1)));
+                cpp_dec_float_50 sum = prev_sum + (1 * divi_t((2 * i + 1) * pow(x, (2 * i - 1))));
                 
                 cpp_dec_float_50 stop = sum - prev_sum;
                 prev_sum = sum; // Guardar la suma anterior antes de añadir el nuevo término.
@@ -238,7 +245,8 @@ using namespace boost::multiprecision;
                 }
                 
             }
-        } else if (x < -1)
+        }
+        if (x < -1)
         {
             cpp_dec_float_50 prev_sum = 0;
             for (int i = 0; i < iterMax; i++)
@@ -256,16 +264,30 @@ using namespace boost::multiprecision;
             }
         }
         
-        
-        
+     }
+
+     /*
+     * TODO: Verificar el dominio de la funcion
+     */
+     cpp_dec_float_50 Fun_tras::sec_t(cpp_dec_float_50 x) {
+         cpp_dec_float_50 temp_cos_t = cos_t(x);
+         if (temp_cos_t == 0) {
+             cout << "Error sec_t" << endl;
+         }
+         else {
+             return 1 * divi_t(cos_t(x));
+         }
+         
      }
 
 int main(int argc, char const* argv[])
 {
     Fun_tras calc1;
 
-    cpp_dec_float_50 cos_result = calc1.factorial(8);
+    cpp_dec_float_50 cos_result = calc1.sec_t(1);
     cout << setprecision(std::numeric_limits<cpp_dec_float_50>::max_digits10) << cos_result << endl;
     
     return 0;
 }
+
+
