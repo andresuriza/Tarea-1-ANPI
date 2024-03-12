@@ -18,7 +18,7 @@ public:
 
     cpp_dec_float_50 factorial(int n);
     cpp_dec_float_50 divi_t(cpp_dec_float_50 x);
-    cpp_dec_float_50 sin_t(int x);
+    cpp_dec_float_50 sin_t(cpp_dec_float_50 x);
     cpp_dec_float_50 sinh_t(cpp_dec_float_50 x);
     cpp_dec_float_50 asin_t(cpp_dec_float_50 x);
     cpp_dec_float_50 cos_t(cpp_dec_float_50 x);
@@ -27,6 +27,7 @@ public:
     cpp_dec_float_50 log_t(int x, int y);
     cpp_dec_float_50 tanh_t(cpp_dec_float_50 x);
     cpp_dec_float_50 root_t(int x, int y);
+    cpp_dec_float_50 tan_t(cpp_dec_float_50 x);
     cpp_dec_float_50 atan_t(cpp_dec_float_50 x);
     cpp_dec_float_50 sec_t(cpp_dec_float_50 x);
     cpp_dec_float_50 csc_t(int x);

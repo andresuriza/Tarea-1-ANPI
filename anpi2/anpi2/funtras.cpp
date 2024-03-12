@@ -83,16 +83,14 @@ using namespace boost::multiprecision;
     // Calculo del seno de un numero x
     // Estructura: sin_t(int x)
     // Parametros: x = numero entero a calcular seno
-    cpp_dec_float_50 Fun_tras::sin_t(int x) {
+    cpp_dec_float_50 Fun_tras::sin_t(cpp_dec_float_50 x) {
         cpp_dec_float_50 sk = 0;    // Valor anterior de sumatoria
 
         for (int n = 0; n <= iterMax; n++)
         {
             cpp_dec_float_50 sk_1 = sk + pow(-1, n) * pow(x, (2 * n + 1)) * divi_t((factorial(2 * n + 1))); // Valor actual de sumatoria
-            cout << sk_1 << endl;
             cpp_dec_float_50 stop = sk_1 - sk;  // Criterio de parada
             sk = sk_1;
-            cout << stop << endl;
 
             if (abs(stop) < tol) {
                 return sk;
@@ -137,9 +135,6 @@ using namespace boost::multiprecision;
             }
         }
     }
-
-
-
 
     cpp_dec_float_50 Fun_tras::cos_t(cpp_dec_float_50 x) {
         cpp_dec_float_50 prev_sum = 0; // Variable para almacenar la suma anterior y comprobar la convergencia.
@@ -307,6 +302,11 @@ using namespace boost::multiprecision;
         
      }
 
+     cpp_dec_float_50 Fun_tras::tan_t(cpp_dec_float_50 x) {
+         cpp_dec_float_50 temp_cosh_t = cos_t(x);
+         cpp_dec_float_50 temp_sinh_t = sin_t(x);
+         return temp_sinh_t * divi_t(temp_cosh_t);
+     }
      /*
      * TODO: Verificar el dominio de la funcion
      */
@@ -325,7 +325,7 @@ int main(int argc, char const* argv[])
 {
     Fun_tras calc1;
 
-    cpp_dec_float_50 cos_result = calc1.tanh_t(1);
+    cpp_dec_float_50 cos_result = calc1.tan_t(1);
     cout << setprecision(std::numeric_limits<cpp_dec_float_50>::max_digits10) << cos_result << endl;
     
     return 0;

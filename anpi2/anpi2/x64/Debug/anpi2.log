@@ -1,14 +1,14 @@
 ﻿  funtras.cpp
 C:\Users\User\Documents\CursoANPI\Tarea-1-ANPI\anpi2\anpi2\funtras.cpp(76,20): warning C4101: 'error': variable local sin referencia
-C:\Users\User\Documents\CursoANPI\Tarea-1-ANPI\anpi2\anpi2\funtras.cpp(201,20): warning C4101: 'error': variable local sin referencia
-C:\Users\User\Documents\CursoANPI\Tarea-1-ANPI\anpi2\anpi2\funtras.cpp(221,20): warning C4101: 'error': variable local sin referencia
-C:\Users\User\Documents\CursoANPI\Tarea-1-ANPI\anpi2\anpi2\funtras.cpp(102,1): warning C4715: 'Fun_tras::sin_t': no todas las rutas de acceso de control devuelven un valor
-C:\Users\User\Documents\CursoANPI\Tarea-1-ANPI\anpi2\anpi2\funtras.cpp(122,1): warning C4715: 'Fun_tras::sinh_t': no todas las rutas de acceso de control devuelven un valor
+C:\Users\User\Documents\CursoANPI\Tarea-1-ANPI\anpi2\anpi2\funtras.cpp(199,20): warning C4101: 'error': variable local sin referencia
+C:\Users\User\Documents\CursoANPI\Tarea-1-ANPI\anpi2\anpi2\funtras.cpp(219,20): warning C4101: 'error': variable local sin referencia
+C:\Users\User\Documents\CursoANPI\Tarea-1-ANPI\anpi2\anpi2\funtras.cpp(120,1): warning C4715: 'Fun_tras::sinh_t': no todas las rutas de acceso de control devuelven un valor
+C:\Users\User\Documents\CursoANPI\Tarea-1-ANPI\anpi2\anpi2\funtras.cpp(100,1): warning C4715: 'Fun_tras::sin_t': no todas las rutas de acceso de control devuelven un valor
 C:\Users\User\Documents\CursoANPI\Tarea-1-ANPI\anpi2\anpi2\funtras.cpp(81,1): warning C4715: 'Fun_tras::divi_t': no todas las rutas de acceso de control devuelven un valor
-C:\Users\User\Documents\CursoANPI\Tarea-1-ANPI\anpi2\anpi2\funtras.cpp(139,1): warning C4715: 'Fun_tras::asin_t': no todas las rutas de acceso de control devuelven un valor
-C:\Users\User\Documents\CursoANPI\Tarea-1-ANPI\anpi2\anpi2\funtras.cpp(158,1): warning C4715: 'Fun_tras::cos_t': no todas las rutas de acceso de control devuelven un valor
-C:\Users\User\Documents\CursoANPI\Tarea-1-ANPI\anpi2\anpi2\funtras.cpp(177,1): warning C4715: 'Fun_tras::cosh_t': no todas las rutas de acceso de control devuelven un valor
-C:\Users\User\Documents\CursoANPI\Tarea-1-ANPI\anpi2\anpi2\funtras.cpp(206,1): warning C4715: 'Fun_tras::ln_t': no todas las rutas de acceso de control devuelven un valor
-C:\Users\User\Documents\CursoANPI\Tarea-1-ANPI\anpi2\anpi2\funtras.cpp(308,1): warning C4715: 'Fun_tras::atan_t': no todas las rutas de acceso de control devuelven un valor
-C:\Users\User\Documents\CursoANPI\Tarea-1-ANPI\anpi2\anpi2\funtras.cpp(322,1): warning C4715: 'Fun_tras::sec_t': no todas las rutas de acceso de control devuelven un valor
+C:\Users\User\Documents\CursoANPI\Tarea-1-ANPI\anpi2\anpi2\funtras.cpp(156,1): warning C4715: 'Fun_tras::cos_t': no todas las rutas de acceso de control devuelven un valor
+C:\Users\User\Documents\CursoANPI\Tarea-1-ANPI\anpi2\anpi2\funtras.cpp(175,1): warning C4715: 'Fun_tras::cosh_t': no todas las rutas de acceso de control devuelven un valor
+C:\Users\User\Documents\CursoANPI\Tarea-1-ANPI\anpi2\anpi2\funtras.cpp(137,1): warning C4715: 'Fun_tras::asin_t': no todas las rutas de acceso de control devuelven un valor
+C:\Users\User\Documents\CursoANPI\Tarea-1-ANPI\anpi2\anpi2\funtras.cpp(204,1): warning C4715: 'Fun_tras::ln_t': no todas las rutas de acceso de control devuelven un valor
+C:\Users\User\Documents\CursoANPI\Tarea-1-ANPI\anpi2\anpi2\funtras.cpp(325,1): warning C4715: 'Fun_tras::sec_t': no todas las rutas de acceso de control devuelven un valor
+C:\Users\User\Documents\CursoANPI\Tarea-1-ANPI\anpi2\anpi2\funtras.cpp(306,1): warning C4715: 'Fun_tras::atan_t': no todas las rutas de acceso de control devuelven un valor
   anpi2.vcxproj -> C:\Users\User\Documents\CursoANPI\Tarea-1-ANPI\anpi2\x64\Debug\anpi2.exe
