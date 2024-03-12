@@ -20,6 +20,7 @@ public:
     cpp_dec_float_50 divi_t(cpp_dec_float_50 x);
     cpp_dec_float_50 sin_t(int x);
     cpp_dec_float_50 sinh_t(int x);
+    cpp_dec_float_50 asin_t(cpp_dec_float_50 x);
     cpp_dec_float_50 cos_t(cpp_dec_float_50 x);
     cpp_dec_float_50 cosh_t(cpp_dec_float_50 x);
     cpp_dec_float_50 ln_t(int x);
