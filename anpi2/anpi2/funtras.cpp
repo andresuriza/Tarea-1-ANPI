@@ -136,6 +136,9 @@ using namespace boost::multiprecision;
         }
     }
     
+    // Calculo del coseno hiperbolico de un numero x
+    // Estructura: cosh_t(cpp_dec_float_50 x)
+    // Parametros: x = numero a calcular coseno hiperbolico
     cpp_dec_float_50 Fun_tras::cosh_t(cpp_dec_float_50 x) {
         cpp_dec_float_50 sk = 0; // Valor anterior de sumatoria
 
