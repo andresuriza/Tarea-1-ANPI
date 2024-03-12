@@ -33,6 +33,7 @@ public:
     cpp_dec_float_50 sec_t(cpp_dec_float_50 x);
     cpp_dec_float_50 csc_t(cpp_dec_float_50 x);
     cpp_dec_float_50 cot_t(cpp_dec_float_50 x);
+    cpp_dec_float_50 exp_t(cpp_dec_float_50 x);
 };
 
 

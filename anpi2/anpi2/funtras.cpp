@@ -361,11 +361,28 @@ using namespace boost::multiprecision;
          
      }
 
+     // TODO: comprobar el dominio de la funcion
+     cpp_dec_float_50 Fun_tras::exp_t(cpp_dec_float_50 x) {
+         cpp_dec_float_50 sk = 0;    // Valor anterior de sumatoria
+
+         for (int n = 0; n <= iterMax; n++)
+         {
+             cpp_dec_float_50 sk_1 = sk + pow(x, n) * divi_t(factorial(n)); // Valor actual de sumatoria
+             cpp_dec_float_50 stop = sk_1 - sk;  // Criterio de parada
+             sk = sk_1;
+
+             if (abs(stop) < tol) {
+                 return sk;
+                 break;
+             }
+         }
+     }
+
 int main(int argc, char const* argv[])
 {
     Fun_tras calc1;
 
-    cpp_dec_float_50 cos_result = calc1.cot_t(0.5);
+    cpp_dec_float_50 cos_result = calc1.exp_t(2);
     cout << setprecision(std::numeric_limits<cpp_dec_float_50>::max_digits10) << cos_result << endl;
     
     return 0;
