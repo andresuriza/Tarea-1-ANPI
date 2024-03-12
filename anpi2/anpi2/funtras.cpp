@@ -104,7 +104,8 @@ using namespace boost::multiprecision;
     // Calculo del seno hiperbolico de un numero x
     // Estructura: sinh_t(int x)
     // Parametros: x = numero entero a calcular seno hiperbolico
-    cpp_dec_float_50 Fun_tras::sinh_t(int x) {
+    // TODO: revisar el dominio
+    cpp_dec_float_50 Fun_tras::sinh_t(cpp_dec_float_50 x) {
         cpp_dec_float_50 sk = 0; // Valor anterior de sumatoria
 
         for (int n = 0; n <= iterMax; n++)
@@ -120,6 +121,7 @@ using namespace boost::multiprecision;
         }
     }
 
+    // TODO: revisar el dominio
     cpp_dec_float_50 Fun_tras::asin_t(cpp_dec_float_50 x) {
         cpp_dec_float_50 sk = 0; // Valor anterior de sumatoria
 
@@ -228,13 +230,15 @@ using namespace boost::multiprecision;
     Estructura: tanh_t(int x) VER SI NECESITA FLOATS
     Parametros: x = numero entero a calcular logaritmo
     sinh(x)/cosh(x)
-   
-    cpp_dec_float_50 Fun_tras::tanh_t(int x){
-
+   TODO: revisar dominio
+     */
+    cpp_dec_float_50 Fun_tras::tanh_t(cpp_dec_float_50 x) {
+        cpp_dec_float_50 temp_cosh_t = cosh_t(x);
+        cpp_dec_float_50 temp_sinh_t = sinh_t(x);
+        return temp_sinh_t * divi_t(temp_cosh_t);
     }
 
-    TODO: ocupo la funcion cosh(x)
-     */
+    
 
      /*
      Calculo de arctan(x)
@@ -321,7 +325,7 @@ int main(int argc, char const* argv[])
 {
     Fun_tras calc1;
 
-    cpp_dec_float_50 cos_result = calc1.asin_t(0.5);
+    cpp_dec_float_50 cos_result = calc1.tanh_t(1);
     cout << setprecision(std::numeric_limits<cpp_dec_float_50>::max_digits10) << cos_result << endl;
     
     return 0;
