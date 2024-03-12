@@ -346,11 +346,26 @@ using namespace boost::multiprecision;
 
      }
 
+     // TODO: verificar dominio
+     cpp_dec_float_50 Fun_tras::cot_t(cpp_dec_float_50 x) {
+         try
+         {
+             cpp_dec_float_50 temp_tan_t = tan_t(x);
+
+             return divi_t(temp_tan_t);
+         }
+         catch (const std::exception&)
+         {
+             cout << "Error: cotangente" << endl;
+         }
+         
+     }
+
 int main(int argc, char const* argv[])
 {
     Fun_tras calc1;
 
-    cpp_dec_float_50 cos_result = calc1.acos_t(0.5);
+    cpp_dec_float_50 cos_result = calc1.cot_t(0.5);
     cout << setprecision(std::numeric_limits<cpp_dec_float_50>::max_digits10) << cos_result << endl;
     
     return 0;
