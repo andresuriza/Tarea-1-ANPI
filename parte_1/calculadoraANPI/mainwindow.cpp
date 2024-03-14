@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
+//#include "anpi2/anpi2/funtras.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -43,6 +44,10 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::on_senhButton_clicked()
 {
+    //Fun_tras result_senh;
+    // castear el plainText
+    //cpp_dec_float_50 result = result_senh.exp_t(2);
+    //cout << setprecision(std::numeric_limits<cpp_dec_float_50>::max_digits10) << result << endl;
 
 }
 void MainWindow::on_tanhButton_clicked()
@@ -221,7 +226,7 @@ void MainWindow::on_threeButton_clicked()
 
 void MainWindow::on_piButton_clicked()
 {
-
+    inputSelected(this->xSelected, "π");
 }
 
 
