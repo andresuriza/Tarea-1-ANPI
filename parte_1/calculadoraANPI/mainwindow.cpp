@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
-//#include "anpi2/anpi2/funtras.h"
+#include "funtras.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -44,11 +44,13 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::on_senhButton_clicked()
 {
-    //Fun_tras result_senh;
+    Fun_tras result_senh;
     // castear el plainText
-    //cpp_dec_float_50 result = result_senh.exp_t(2);
-    //cout << setprecision(std::numeric_limits<cpp_dec_float_50>::max_digits10) << result << endl;
-
+    cpp_dec_float_50 num = ui->xInputField->toPlainText().toFloat();
+    cpp_dec_float_50 result = result_senh.exp_t(num);
+    QString resultStr = QString::fromStdString(result.str(50)); // El str(50) limita al resultado a 50 caracteres,
+                                                                // en vez de 50 decimales
+    ui->resultTextBrowser->setText(resultStr);
 }
 void MainWindow::on_tanhButton_clicked()
 {
