@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>344</width>
-    <height>536</height>
+    <height>582</height>
    </rect>
   </property>
   <property name="font">
@@ -671,7 +671,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_23">
+       <widget class="QPushButton" name="decButton">
         <property name="font">
          <font>
           <family>Sitka Display</family>

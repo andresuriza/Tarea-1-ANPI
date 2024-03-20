@@ -10,66 +10,73 @@ using namespace boost::multiprecision;
     // Calculo del factorial de un numero n
     // Estructura: factorial(int n)
     // Parametros: n = numero a calcular factorial
-    cpp_dec_float_50 Fun_tras::factorial(int n)
+    cpp_dec_float_50 Fun_tras::factorial(int  n)
     {
         n = abs(n); // Se obliga a numero a ser positivo
-        cpp_dec_float_50 result = 1;
-        int i;
-        for (i = 2; i <= n; i++)
-            result *= i;
-        return result;
+
+        if (n == 0 || n == 1) {
+            return 1;
+        }
+        else {
+            return n * factorial(n - 1);
+        }
     }
 
     // Calculo del inverso de un numero x
     // Estructura: divi_t(cpp_dec_float_50 x)
     // Parametros: x = numero de punto flotante de precision de 50 decimales a calcular su inverso
-    // TODO: Revisar esta porque no esta funcionando
     cpp_dec_float_50 Fun_tras::divi_t(cpp_dec_float_50 x) {
         try {
-            if (x <= 0) {
-                throw -1;
-            }
-            else {
-                cpp_dec_float_50 x_0 = 0;   // Valor inicial
+            if (x > 0) {
+                cpp_dec_float_50 x_0;   // Valor inicial
 
-                if (0 < x <= factorial(20))
-                {
-                    x_0 = pow(eps, 2);
+                if (x >= factorial(100)) {
+                    return 0;
                 }
+                else {
+                    if (0 < x <= factorial(20))
+                    {
+                        x_0 = pow(eps, 2);
+                    }
 
-                if (factorial(20) < x <= factorial(40))
-                {
-                    x_0 = pow(eps, 4);
-                }
+                    else if (factorial(20) < x <= factorial(40))
+                    {
+                        x_0 = pow(eps, 4);
+                    }
 
-                if (factorial(40) < x <= factorial(60))
-                {
-                    x_0 = pow(eps, 8);
-                }
+                    else if (factorial(40) < x <= factorial(60))
+                    {
+                        x_0 = pow(eps, 8);
+                    }
 
-                if (factorial(60) < x <= factorial(80))
-                {
-                    x_0 = pow(eps, 11);
-                }
+                    else if (factorial(60) < x <= factorial(80))
+                    {
+                        x_0 = pow(eps, 11);
+                    }
 
-                if (factorial(80) < x <= factorial(100))
-                {
-                    x_0 = pow(eps, 15);
-                }
+                    else if (factorial(80) < x <= factorial(100))
+                    {
+                        x_0 = pow(eps, 15);
+                    }
 
-                cpp_dec_float_50 num = x_0;
+                    cpp_dec_float_50 sk = x_0;
 
-                for (int n = 0; n <= iterMax; n++)
-                {
-                    cpp_dec_float_50 sk_1 = x_0 * (2 - x * x_0); // Valor actual de sumatoria
-                    cpp_dec_float_50 stop = sk_1 - x_0; // Criterio de parada
-                    x_0 = sk_1;
+                    for (int n = 0; n <= iterMax; n++)
+                    {
+                        cpp_dec_float_50 sk_1 = sk * (2 - x * sk); // Valor actual de sumatoria
+                        cpp_dec_float_50 stop = sk_1 - sk; // Criterio de parada
+                        sk = sk_1;
 
-                    if (abs(stop) < tol * abs(sk_1)) {
-                        return sk_1;
-                        break;
+                        if (abs(stop) < tol * abs(sk_1)) {
+                            return sk_1;
+                            break;
+                        }
                     }
                 }
+            }
+
+            else {
+                throw -1;
             }
         }
 
@@ -125,7 +132,7 @@ using namespace boost::multiprecision;
 
         for (int n = 0; n <= iterMax; n++)
         {
-            cpp_dec_float_50 sk_1 = sk + factorial(2 * n) * pow(x, (2 * n + 1)) * divi_t((pow(4, n) * pow(factorial(n), 2) * (2 * n + 1))); // Valor actual de sumatoria
+            cpp_dec_float_50 sk_1 = sk + (factorial(2 * n) * pow(x, (2 * n + 1))) * divi_t((pow(4, n) * pow(factorial(n), 2) * (2 * n + 1))); // Valor actual de sumatoria
             cpp_dec_float_50 stop = sk_1 - sk;  // Criterio de parada
             sk = sk_1;
 
@@ -141,7 +148,7 @@ using namespace boost::multiprecision;
 
         // Iterar hasta que la serie converja o se alcance el número máximo de iteraciones.
         for (int n = 0; n <= iterMax; n++) {
-            cpp_dec_float_50 sum = prev_sum + (pow(-1, n) * pow(x, 2 * n) * divi_t(factorial(2 * n)));
+            cpp_dec_float_50 sum = prev_sum + ((pow(-1, n) * pow(x, (2 * n))) * (divi_t(factorial(2 * n))));
             cpp_dec_float_50 stop = sum - prev_sum;
             prev_sum = sum; // Guardar la suma anterior antes de añadir el nuevo término.
 
@@ -176,7 +183,8 @@ using namespace boost::multiprecision;
         cpp_dec_float_50 temp_asin_t = asin_t(x);
         return (pi_t * divi_t(2)) - temp_asin_t;
     }
-    cpp_dec_float_50 Fun_tras::ln_t(int x) {
+
+    cpp_dec_float_50 Fun_tras::ln_t(cpp_dec_float_50  x) {
         try {
             if (x <= 0) {
                 throw - 1;
@@ -210,7 +218,7 @@ using namespace boost::multiprecision;
     // Estructura: log_t(int x, int y)
     // Parametros: x = numero entero a calcular logaritmo
     // y = base entera del logaritmo
-    cpp_dec_float_50 Fun_tras::log_t(int x, int y) {
+    cpp_dec_float_50 Fun_tras::log_t(cpp_dec_float_50  x, cpp_dec_float_50 y) {
         try {
             if (x <= 0) {
                 throw - 1;
@@ -226,20 +234,42 @@ using namespace boost::multiprecision;
         }
     }
 
-    /*
-    Calculo de tangente h
-    Estructura: tanh_t(int x) VER SI NECESITA FLOATS
-    Parametros: x = numero entero a calcular logaritmo
-    sinh(x)/cosh(x)
-   TODO: revisar dominio
-     */
-    cpp_dec_float_50 Fun_tras::tanh_t(cpp_dec_float_50 x) {
-        cpp_dec_float_50 temp_cosh_t = cosh_t(x);
-        cpp_dec_float_50 temp_sinh_t = sinh_t(x);
-        return temp_sinh_t * divi_t(temp_cosh_t);
+    cpp_dec_float_50 Fun_tras::root_t(cpp_dec_float_50  x, cpp_dec_float_50  y) {
+        try {
+            if ((x && y) > 0) {
+                cpp_dec_float_50 sk = x * divi_t(2);
+
+                for (int n = 0; n <= iterMax; n++)
+                {
+                    cpp_dec_float_50 sk_1 = sk - (pow(sk, y) - x) * divi_t((y * pow(sk, (y - 1))));
+                    cpp_dec_float_50 stop = sk_1 - sk;
+                    sk = sk_1;
+
+                    if (abs(stop) < tol * abs(sk_1)) {
+                        return sk;
+                        break;
+                    }
+                }
+            }
+
+            else {
+                throw -1;
+            }
+        }
+
+        catch (int error) {
+            cout << "Error: Índice o radicando menores a 0";
+            return -1;
+        }
     }
 
-    
+    cpp_dec_float_50 Fun_tras::sqrt_t(cpp_dec_float_50  x) {
+        return root_t(x, 2);
+    }
+
+    cpp_dec_float_50 Fun_tras::tanh_t(cpp_dec_float_50 x) {
+        return (sinh_t(x) * divi_t(cosh_t(x)));
+    }
 
      /*
      Calculo de arctan(x)
@@ -314,10 +344,10 @@ using namespace boost::multiprecision;
      }
 
      cpp_dec_float_50 Fun_tras::tan_t(cpp_dec_float_50 x) {
-         cpp_dec_float_50 temp_cosh_t = cos_t(x);
-         cpp_dec_float_50 temp_sinh_t = sin_t(x);
-         return temp_sinh_t * divi_t(temp_cosh_t);
+         return (sin_t(x) * divi_t(cos_t(x)));
      }
+
+
      /*
      * TODO: Verificar el dominio de la funcion
      */
@@ -378,12 +408,39 @@ using namespace boost::multiprecision;
          }
      }
 
-//int main(int argc, char const* argv[])
-//{
-//    Fun_tras calc1;
+     cpp_dec_float_50 Fun_tras::power_t(cpp_dec_float_50 x, int y) {
+         try
+         {
+            if (y <= 0) {
+                throw -1;
+            }
+            else {
+                cpp_dec_float_50 result = x;
 
-//    cpp_dec_float_50 exp_result = calc1.exp_t(8);
-//    cout << setprecision(std::numeric_limits<cpp_dec_float_50>::max_digits10) << exp_result << endl;
-    
-//    return 0;
-//}
+                for (int i = 1; i < y; ++i) {
+                   result = result * x;
+                }
+
+                return result;
+            }
+         }
+
+         catch (int error)
+         {
+            cout << "Error: numero menor o igual a 0" << endl;
+            return -1;
+         }
+     }
+
+/*
+int main(int argc, char const* argv[])
+{
+    Fun_tras calc1;
+
+    cpp_dec_float_50 root = calc1.root_t(-2, 0.5);
+    cout << setprecision(std::numeric_limits<cpp_dec_float_50>::max_digits10) << root << endl;
+
+
+    return 0;
+}
+*/

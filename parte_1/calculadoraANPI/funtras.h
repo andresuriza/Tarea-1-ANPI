@@ -16,7 +16,7 @@ private:
 
 public:
 
-    cpp_dec_float_50 factorial(int n);
+    cpp_dec_float_50 factorial(int  n);
     cpp_dec_float_50 divi_t(cpp_dec_float_50 x);
     cpp_dec_float_50 sin_t(cpp_dec_float_50 x);
     cpp_dec_float_50 sinh_t(cpp_dec_float_50 x);
@@ -24,16 +24,16 @@ public:
     cpp_dec_float_50 cos_t(cpp_dec_float_50 x);
     cpp_dec_float_50 cosh_t(cpp_dec_float_50 x);
     cpp_dec_float_50 acos_t(cpp_dec_float_50 x);
-    cpp_dec_float_50 ln_t(int x);
-    cpp_dec_float_50 log_t(int x, int y);
+    cpp_dec_float_50 ln_t(cpp_dec_float_50  x);
+    cpp_dec_float_50 log_t(cpp_dec_float_50  x, cpp_dec_float_50 y);
     cpp_dec_float_50 tanh_t(cpp_dec_float_50 x);
-    cpp_dec_float_50 root_t(int x, int y);
+    cpp_dec_float_50 root_t(cpp_dec_float_50  x, cpp_dec_float_50  y);
+    cpp_dec_float_50 sqrt_t(cpp_dec_float_50  x);
     cpp_dec_float_50 tan_t(cpp_dec_float_50 x);
     cpp_dec_float_50 atan_t(cpp_dec_float_50 x);
     cpp_dec_float_50 sec_t(cpp_dec_float_50 x);
     cpp_dec_float_50 csc_t(cpp_dec_float_50 x);
     cpp_dec_float_50 cot_t(cpp_dec_float_50 x);
     cpp_dec_float_50 exp_t(cpp_dec_float_50 x);
+    cpp_dec_float_50 power_t(cpp_dec_float_50 x, int y);
 };
-
-
