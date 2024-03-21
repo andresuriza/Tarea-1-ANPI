@@ -34,19 +34,9 @@ using namespace boost::multiprecision;
                     return 0;
                 }
                 else {
-                    if (0 < x <= factorial(20))
+                    if (factorial(80) < x <= factorial(100))
                     {
-                        x_0 = pow(eps, 2);
-                    }
-
-                    else if (factorial(20) < x <= factorial(40))
-                    {
-                        x_0 = pow(eps, 4);
-                    }
-
-                    else if (factorial(40) < x <= factorial(60))
-                    {
-                        x_0 = pow(eps, 8);
+                        x_0 = pow(eps, 15);
                     }
 
                     else if (factorial(60) < x <= factorial(80))
@@ -54,9 +44,20 @@ using namespace boost::multiprecision;
                         x_0 = pow(eps, 11);
                     }
 
-                    else if (factorial(80) < x <= factorial(100))
+                    else if (factorial(40) < x <= factorial(60))
                     {
-                        x_0 = pow(eps, 15);
+                        x_0 = pow(eps, 8);
+                    }
+
+
+                    else if (factorial(20) < x <= factorial(40))
+                    {
+                        x_0 = pow(eps, 4);
+                    }
+
+                    else if (0 < x <= factorial(20))
+                    {
+                        x_0 = pow(eps, 2);
                     }
 
                     cpp_dec_float_50 sk = x_0;
@@ -79,13 +80,11 @@ using namespace boost::multiprecision;
                 throw -1;
             }
         }
-
-        catch (int error)
-        {
+        catch (int error) {
             cout << "Error: x menor o igual a 0" << endl;
-            return -1;
         }
     }
+
 
     // Calculo del seno de un numero x
     // Estructura: sin_t(int x)
@@ -128,19 +127,33 @@ using namespace boost::multiprecision;
 
     // TODO: revisar el dominio
     cpp_dec_float_50 Fun_tras::asin_t(cpp_dec_float_50 x) {
-        cpp_dec_float_50 sk = 0; // Valor anterior de sumatoria
+        try {
+            if ((-1 <= x) && (x <= 1)) {
+                cpp_dec_float_50 sk = 0; // Valor anterior de sumatoria
 
-        for (int n = 0; n <= iterMax; n++)
-        {
-            cpp_dec_float_50 sk_1 = sk + (factorial(2 * n) * pow(x, (2 * n + 1))) * divi_t((pow(4, n) * pow(factorial(n), 2) * (2 * n + 1))); // Valor actual de sumatoria
-            cpp_dec_float_50 stop = sk_1 - sk;  // Criterio de parada
-            sk = sk_1;
+                for (int n = 0; n <= iterMax; n++)
+                {
+                    cpp_dec_float_50 sk_1 = sk + (factorial(2 * n) * pow(x, (2 * n + 1))) * divi_t((pow(4, n) * pow(factorial(n), 2) * (2 * n + 1))); // Valor actual de sumatoria
+                    cpp_dec_float_50 stop = sk_1 - sk;  // Criterio de parada
+                    sk = sk_1;
 
-            if (abs(stop) < tol) {
-                return sk;
-                break;
+                    if (abs(stop) < tol) {
+                        return sk;
+                        break;
+                    }
+                }
+            }
+
+            else {
+                throw -1;
             }
         }
+
+        catch (int error) {
+            cout << "Numero no esta en el dominio" << endl;
+            return -1;
+        }
+
     }
 
     cpp_dec_float_50 Fun_tras::cos_t(cpp_dec_float_50 x) {
@@ -180,8 +193,21 @@ using namespace boost::multiprecision;
 
     // TODO: verificar dominio 
     cpp_dec_float_50 Fun_tras::acos_t(cpp_dec_float_50 x) {
-        cpp_dec_float_50 temp_asin_t = asin_t(x);
-        return (pi_t * divi_t(2)) - temp_asin_t;
+        try {
+            if ((-1 <= x) && (x <= 1)) {
+                cpp_dec_float_50 temp_asin_t = asin_t(x);
+                return (pi_t * divi_t(2)) - temp_asin_t;
+            }
+
+            else {
+                throw -1;
+            }
+        }
+
+        catch (int error) {
+            cout << "Numero no esta en el dominio" << endl;
+            return -1;
+        }
     }
 
     cpp_dec_float_50 Fun_tras::ln_t(cpp_dec_float_50  x) {
@@ -229,7 +255,7 @@ using namespace boost::multiprecision;
         }
         catch (int error)
         {
-            cout << "Error: numero menor o igual a 0" << endl;
+            //cout << "Error: numero menor o igual a 0" << endl;
             return -1;
         }
     }
@@ -279,8 +305,6 @@ using namespace boost::multiprecision;
      */
 
      cpp_dec_float_50 Fun_tras::atan_t(cpp_dec_float_50 x){
-        if (x >= -1 && x <= 1)
-        {
             cpp_dec_float_50 prev_sum = 0;
 
             for (int n = 0; n <= iterMax; n++)
@@ -300,7 +324,6 @@ using namespace boost::multiprecision;
                 }
             }
 
-        }
         if (x > 1)
         {
             cpp_dec_float_50 prev_sum = 0;

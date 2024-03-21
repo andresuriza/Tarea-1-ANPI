@@ -30,7 +30,9 @@ void MainWindow::inputSelected(bool selectedBox, QString num){
 
 void MainWindow::on_helpButton_clicked()
 {
-    ui->resultLabel->setText("ayuda");
+    //Help helpWindow;
+    //helpWindow.show();
+   // helpWindow.setFixedSize(helpWindow.size());
 }
 
 
@@ -84,9 +86,17 @@ void MainWindow::on_asenButton_clicked()
     // castear el plainText
     cpp_dec_float_50 num = ui->xInputField->toPlainText().toFloat();
     cpp_dec_float_50 result = result_asen.asin_t(num);
-    QString resultStr = QString::fromStdString(result.str(50)); // El str(50) limita al resultado a 50 caracteres,
-        // en vez de 50 decimales
-    ui->resultTextBrowser->setText(resultStr);
+
+    if (((-1 <= num) && (num <= 1))) {
+        QString resultStr = QString::fromStdString(result.str(50)); // El str(50) limita al resultado a 50 caracteres,
+            // en vez de 50 decimales
+        ui->resultTextBrowser->setText(resultStr);
+    }
+
+    else {
+       ui->resultTextBrowser->setText("Numero no esta en el dominio");
+    }
+
 }
 
 
@@ -95,13 +105,19 @@ void MainWindow::on_acosButton_clicked()
     Fun_tras result_acos;
     // castear el plainText
     cpp_dec_float_50 num = ui->xInputField->toPlainText().toFloat();
-    cpp_dec_float_50 result = result_acos.acos_t(num);
-    QString resultStr = QString::fromStdString(result.str(50)); // El str(50) limita al resultado a 50 caracteres,
-        // en vez de 50 decimales
-    ui->resultTextBrowser->setText(resultStr);
 
+
+    if ((-1 <= num) && (num <= 1)) {
+        cpp_dec_float_50 result = result_acos.acos_t(num);
+        QString resultStr = QString::fromStdString(result.str(50)); // El str(50) limita al resultado a 50 caracteres,
+            // en vez de 50 decimales
+        ui->resultTextBrowser->setText(resultStr);
+    }
+
+    else {
+        ui->resultTextBrowser->setText("Numero no esta en el dominio");
+    }
 }
-
 
 void MainWindow::on_atanButton_clicked()
 {
@@ -120,10 +136,16 @@ void MainWindow::on_secButton_clicked()
     Fun_tras result_sec;
     // castear el plainText
     cpp_dec_float_50 num = ui->xInputField->toPlainText().toFloat();
-    cpp_dec_float_50 result = result_sec.sec_t(num);
-    QString resultStr = QString::fromStdString(result.str(50)); // El str(50) limita al resultado a 50 caracteres,
-        // en vez de 50 decimales
-    ui->resultTextBrowser->setText(resultStr);
+
+    if (result_sec.cos_t(num) == 0) {
+        ui->resultTextBrowser->setText("Error: Coseno igual a 0");
+    }
+    else {
+        cpp_dec_float_50 result = result_sec.sec_t(num);
+        QString resultStr = QString::fromStdString(result.str(50)); // El str(50) limita al resultado a 50 caracteres,
+            // en vez de 50 decimales
+        ui->resultTextBrowser->setText(resultStr);
+    }
 }
 
 
@@ -132,10 +154,15 @@ void MainWindow::on_cscButton_clicked()
     Fun_tras result_csc;
     // castear el plainText
     cpp_dec_float_50 num = ui->xInputField->toPlainText().toFloat();
-    cpp_dec_float_50 result = result_csc.csc_t(num);
-    QString resultStr = QString::fromStdString(result.str(50)); // El str(50) limita al resultado a 50 caracteres,
-        // en vez de 50 decimales
-    ui->resultTextBrowser->setText(resultStr);
+    if (result_csc.sin_t(num) == 0) {
+        ui->resultTextBrowser->setText("Error: Seno igual a 0");
+    }
+    else {
+        cpp_dec_float_50 result = result_csc.csc_t(num);
+        QString resultStr = QString::fromStdString(result.str(50)); // El str(50) limita al resultado a 50 caracteres,
+            // en vez de 50 decimales
+        ui->resultTextBrowser->setText(resultStr);
+    }
 }
 
 
@@ -144,10 +171,15 @@ void MainWindow::on_cotButton_clicked()
     Fun_tras result_cot;
     // castear el plainText
     cpp_dec_float_50 num = ui->xInputField->toPlainText().toFloat();
-    cpp_dec_float_50 result = result_cot.cot_t(num);
-    QString resultStr = QString::fromStdString(result.str(50)); // El str(50) limita al resultado a 50 caracteres,
-        // en vez de 50 decimales
-    ui->resultTextBrowser->setText(resultStr);
+    if (result_cot.sin_t(num) == 0) {
+        ui->resultTextBrowser->setText("Error: Seno igual a 0");
+    }
+    else {
+        cpp_dec_float_50 result = result_cot.cot_t(num);
+        QString resultStr = QString::fromStdString(result.str(50)); // El str(50) limita al resultado a 50 caracteres,
+            // en vez de 50 decimales
+        ui->resultTextBrowser->setText(resultStr);
+    }
 }
 
 void MainWindow::on_senButton_clicked()
@@ -188,10 +220,15 @@ void MainWindow::on_lnButton_clicked()
     Fun_tras result_ln;
     // castear el plainText
     cpp_dec_float_50 num = ui->xInputField->toPlainText().toFloat();
-    cpp_dec_float_50 result = result_ln.ln_t(num);
-    QString resultStr = QString::fromStdString(result.str(50)); // El str(50) limita al resultado a 50 caracteres,
-        // en vez de 50 decimales
-    ui->resultTextBrowser->setText(resultStr);
+    if (num <= 0) {
+        ui->resultTextBrowser->setText("Error: x menor o igual a 0");
+    }
+    else {
+        cpp_dec_float_50 result = result_ln.ln_t(num);
+        QString resultStr = QString::fromStdString(result.str(50)); // El str(50) limita al resultado a 50 caracteres,
+            // en vez de 50 decimales
+        ui->resultTextBrowser->setText(resultStr);
+    }
 }
 
 
@@ -214,21 +251,36 @@ void MainWindow::on_logYButton_clicked()
     cpp_dec_float_50 x = ui->xInputField->toPlainText().toFloat();
     int y = ui->yInputField->toPlainText().toInt();
     cpp_dec_float_50 result = result_logY.log_t(x, y);
-    QString resultStr = QString::fromStdString(result.str(50)); // El str(50) limita al resultado a 50 caracteres,
-        // en vez de 50 decimales
-    ui->resultTextBrowser->setText(resultStr);
-}
 
+    if (result <= 0) {
+        ui->resultTextBrowser->setText("Error: numero menor o igual a 0");
+    }
+
+    else {
+        QString resultStr = QString::fromStdString(result.str(50)); // El str(50) limita al resultado a 50 caracteres,
+            // en vez de 50 decimales
+        ui->resultTextBrowser->setText(resultStr);
+    }
+}
 
 void MainWindow::on_divButton_clicked()
 {
     Fun_tras result_div;
     // castear el plainText
     cpp_dec_float_50 num = ui->xInputField->toPlainText().toFloat();
-    cpp_dec_float_50 result = result_div.divi_t(num);
-    QString resultStr = QString::fromStdString(result.str(50)); // El str(50) limita al resultado a 50 caracteres,
-        // en vez de 50 decimales
-    ui->resultTextBrowser->setText(resultStr);
+    if (num > 0) {
+        cpp_dec_float_50 result = result_div.divi_t(num);
+        QString resultStr = QString::fromStdString(result.str(50)); // El str(50) limita al resultado a 50 caracteres,
+            // en vez de 50 decimales
+
+        ui->resultTextBrowser->setText(resultStr);
+    }
+
+    else {
+        ui->resultTextBrowser->setText("Error: x menor o igual a 0");
+    }
+
+
 }
 
 void MainWindow::on_sqrButton_clicked()
@@ -237,11 +289,17 @@ void MainWindow::on_sqrButton_clicked()
     // castear el plainText
     cpp_dec_float_50 num = ui->xInputField->toPlainText().toFloat();
     cpp_dec_float_50 result = result_sqr.sqrt_t(num);
-    QString resultStr = QString::fromStdString(result.str(50)); // El str(50) limita al resultado a 50 caracteres,
-        // en vez de 50 decimales
-    ui->resultTextBrowser->setText(resultStr);
-}
 
+    if (num > 0) {
+        QString resultStr = QString::fromStdString(result.str(50)); // El str(50) limita al resultado a 50 caracteres,
+            // en vez de 50 decimales
+        ui->resultTextBrowser->setText(resultStr);
+    }
+
+    else {
+      ui->resultTextBrowser->setText("Error: Índice o radicando menores a 0");
+    }
+}
 
 void MainWindow::on_sqrYButton_clicked()
 {
@@ -250,9 +308,16 @@ void MainWindow::on_sqrYButton_clicked()
     cpp_dec_float_50 x = ui->xInputField->toPlainText().toFloat();
     cpp_dec_float_50 y = ui->yInputField->toPlainText().toFloat();
     cpp_dec_float_50 result = result_sqrY.root_t(x, y);
-    QString resultStr = QString::fromStdString(result.str(50)); // El str(50) limita al resultado a 50 caracteres,
-        // en vez de 50 decimales
-    ui->resultTextBrowser->setText(resultStr);
+
+    if ((x && y) > 0) {
+        QString resultStr = QString::fromStdString(result.str(50)); // El str(50) limita al resultado a 50 caracteres,
+            // en vez de 50 decimales
+        ui->resultTextBrowser->setText(resultStr);
+    }
+
+    else {
+        ui->resultTextBrowser->setText("Error: Índice o radicando menores a 0");
+    }
 }
 
 
@@ -275,9 +340,16 @@ void MainWindow::on_powerYButton_clicked()
     cpp_dec_float_50 x = ui->xInputField->toPlainText().toFloat();
     int y = ui->yInputField->toPlainText().toInt();
     cpp_dec_float_50 result = result_power.power_t(x, y);
-    QString resultStr = QString::fromStdString(result.str(50)); // El str(50) limita al resultado a 50 caracteres,
-        // en vez de 50 decimales
-    ui->resultTextBrowser->setText(resultStr);
+
+    if (y <= 0) {
+        ui->resultTextBrowser->setText("Error: numero menor o igual a 0");
+    }
+
+    else {
+        QString resultStr = QString::fromStdString(result.str(50)); // El str(50) limita al resultado a 50 caracteres,
+            // en vez de 50 decimales
+        ui->resultTextBrowser->setText(resultStr);
+    }
 }
 
 void MainWindow::on_factorialButton_clicked()
