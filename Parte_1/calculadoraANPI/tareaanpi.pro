@@ -9,19 +9,19 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    calculadora_funtras.cpp \
-    helpwindow.cpp \
-    mainwindow.cpp \
+    GUI/calculadora_funtras.cpp \
+    GUI/helpwindow.cpp \
+    GUI/mainwindow.cpp \
     test_funtras.cpp
 
 HEADERS += \
-    helpwindow.h \
-    mainwindow.h \
+    GUI/helpwindow.h \
+    GUI/mainwindow.h \
     funtras.h
 
 FORMS += \
-    helpwindow.ui \
-    mainwindow.ui
+    GUI/helpwindow.ui \
+    GUI/mainwindow.ui
 
 INCLUDEPATH += C:/boost_1_84_0
 
