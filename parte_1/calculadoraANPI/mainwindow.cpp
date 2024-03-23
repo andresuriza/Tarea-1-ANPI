@@ -7,8 +7,7 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-    bool xSelected = false;
-    bool ySelected = false;
+    this->xSelected = true;
     ui->setupUi(this);
 }
 
@@ -44,7 +43,6 @@ void MainWindow::on_pushButton_clicked()
     ui->resultTextBrowser->clear();
     ui->xInputField->clear();
     ui->yInputField->clear();
-    // TODO: limpiar las variables en la logica
 }
 
 // ActionListener de boton ejecuta el seno
