@@ -120,10 +120,10 @@ using namespace boost::multiprecision;
     // Calculo del seno hiperbolico de un numero x
     // Estructura: sinh_t(int x)
     // Parametros: x = numero entero a calcular seno hiperbolico
-    // TODO: revisar el dominio
     cpp_dec_float_50 Fun_tras::sinh_t(cpp_dec_float_50 x) {
         cpp_dec_float_50 sk = 0; // Valor anterior de sumatoria
 
+        // Iterar hasta que la serie converja o se alcance el número máximo de iteraciones.
         for (int n = 0; n <= iterMax; n++)
         {
             cpp_dec_float_50 sk_1 = sk + pow(x, (2 * n + 1)) * divi_t(factorial(2 * n + 1)); // Valor actual de sumatoria
@@ -137,12 +137,15 @@ using namespace boost::multiprecision;
         }
     }
 
-    // TODO: revisar el dominio
+    // Caldulo de seno inverso de un numero x
+    // Estructura: asin_t(float x)
+    // Parametros: x = numero a calcular
     cpp_dec_float_50 Fun_tras::asin_t(cpp_dec_float_50 x) {
         try {
             if ((-1 <= x) && (x <= 1)) {
                 cpp_dec_float_50 sk = 0; // Valor anterior de sumatoria
 
+                // Iterar hasta que la serie converja o se alcance el número máximo de iteraciones.
                 for (int n = 0; n <= iterMax; n++)
                 {
                     cpp_dec_float_50 sk_1 = sk + (factorial(2 * n) * pow(x, (2 * n + 1))) * divi_t((pow(4, n) * pow(factorial(n), 2) * (2 * n + 1))); // Valor actual de sumatoria
@@ -168,6 +171,9 @@ using namespace boost::multiprecision;
 
     }
 
+    // Caldulo de coseno de un numero x
+    // Estructura: cos_t(float x)
+    // Parametros: x = numero a calcular
     cpp_dec_float_50 Fun_tras::cos_t(cpp_dec_float_50 x) {
         cpp_dec_float_50 prev_sum = 0; // Variable para almacenar la suma anterior y comprobar la convergencia.
 
@@ -190,6 +196,7 @@ using namespace boost::multiprecision;
     cpp_dec_float_50 Fun_tras::cosh_t(cpp_dec_float_50 x) {
         cpp_dec_float_50 sk = 0; // Valor anterior de sumatoria
 
+        // Iterar hasta que la serie converja o se alcance el número máximo de iteraciones.
         for (int n = 0; n <= iterMax; n++)
         {
             cpp_dec_float_50 sk_1 = sk + pow(x, (2 * n)) * divi_t(factorial(2 * n)); // Valor actual de sumatoria
@@ -203,6 +210,9 @@ using namespace boost::multiprecision;
         }
     }
 
+    // Calculo del coseno inverso de un numero x
+    // Estuctura: acos_t(float x)
+    // Parametros: x = numero a calcular
     cpp_dec_float_50 Fun_tras::acos_t(cpp_dec_float_50 x) {
         try {
             if ((-1 <= x) && (x <= 1)) {
@@ -221,6 +231,9 @@ using namespace boost::multiprecision;
         }
     }
 
+    // Calculo de logaritmo natural de un numero x
+    // Estructura: ln_t(float x)
+    // Parametros: x = numero a calcular
     cpp_dec_float_50 Fun_tras::ln_t(cpp_dec_float_50  x) {
         try {
             if (x <= 0) {
@@ -231,6 +244,7 @@ using namespace boost::multiprecision;
 
                 cpp_dec_float_50 sk = 0;
 
+                // Iterar hasta que la serie converja o se alcance el número máximo de iteraciones.
                 for (int n = 0; n <= iterMax; n++)
                 {
                     cpp_dec_float_50 sk_1 = sk + divi_t(2 * n + 1) * pow((x - 1) * divi_t(x + 1), 2 * n);
@@ -271,6 +285,9 @@ using namespace boost::multiprecision;
         }
     }
 
+    // Calculo del raiz de un numero x, base y
+    // Estructura: root_t(float x, float y)
+    // Parametros: x = numero float, y = numero float
     cpp_dec_float_50 Fun_tras::root_t(cpp_dec_float_50  x, cpp_dec_float_50  y) {
         if (ceilf(float(y)) == float(y)) { // Si y es entero
             int yInt = static_cast<int>(y);
@@ -330,11 +347,18 @@ using namespace boost::multiprecision;
         }
     }
 
+    // Calculo del raiz cuadrada de un numero x, base y
+    // Estructura: sqrt_t(float x)
+    // Parametros: x = numero a calcular
     cpp_dec_float_50 Fun_tras::sqrt_t(cpp_dec_float_50  x) {
         return root_t(x, 2);
     }
 
+    // Calculo del tangente hiperbolica de un numero
+    // Estructura: tanh_t(float x)
+    // Parametros: x = numero a calcular
     cpp_dec_float_50 Fun_tras::tanh_t(cpp_dec_float_50 x) {
+        // se calcula a partir de identidades trigonometricas
         return (sinh_t(x) * divi_t(cosh_t(x)));
     }
 
@@ -342,9 +366,7 @@ using namespace boost::multiprecision;
      Calculo de arctan(x)
      Estructura: atan_t(x)
      Parametros: x = numero entero a calcular logaritmo
-     TODO: ver si esta funcion puede admitir floats
      */
-
      cpp_dec_float_50 Fun_tras::atan_t(cpp_dec_float_50 x){
         cpp_dec_float_50 sk = 0;    // Valor anterior de sumatoria
         if ((-1 <= x) && (x <= 1)) {
@@ -392,33 +414,81 @@ using namespace boost::multiprecision;
         return sk;
      }
 
+     // Calculo del tangente de un numero
+     // Estructura: tanh_t(float x)
+     // Parametros: x = numero a calcular
      cpp_dec_float_50 Fun_tras::tan_t(cpp_dec_float_50 x) {
-         return (sin_t(x) * divi_t(cos_t(x)));
+         try {
+             // se calcula con base a identidades trigonometricas
+             return (sin_t(x) * divi_t(cos_t(x)));
+         } catch (const std::exception&) {
+             cout << "Error: tangente" << endl;
+             return -1;
+         }
+
      }
 
+     /*
+     * Calculo de secante de un numero
+     * Estructura: sec_t(float x)
+     * Parametro: x = numero a calcular
+    */
      cpp_dec_float_50 Fun_tras::sec_t(cpp_dec_float_50 x) {
-         cpp_dec_float_50 temp_cos_t = cos_t(x);
-         if (temp_cos_t == 0) {
-             cout << "Error sec_t" << endl;
+         try {
+             // calculo de coseno
+             cpp_dec_float_50 temp_cos_t = cos_t(x);
+             // verifica que sea diferente de cero para evitar division por cero
+             if (temp_cos_t == 0) {
+                 cout << "Error sec_t" << endl;
+                 return -1;
+             }
+             else {
+                 // calculo por identidades trigonometricas
+                 return 1 * divi_t(temp_cos_t);
+             }
+         } catch (const std::exception&) {
+             cout << "Error: secante" << endl;
+             return -1;
          }
-         else {
-             return 1 * divi_t(temp_cos_t);
-         }
+
          
      }
 
+     /*
+     * Calcula de cosecante de un numero
+     * Estructura: csc_t(float x)
+     * Parametros: x = numero a calcular
+     */
      cpp_dec_float_50 Fun_tras::csc_t(cpp_dec_float_50 x) {
-         cpp_dec_float_50 temp_sin_t = sin_t(x);
-         if (temp_sin_t == 0) {
-             cout << "Error sec_t" << endl;
+         try {
+             // calculo de seno
+             cpp_dec_float_50 temp_sin_t = sin_t(x);
+
+             if (temp_sin_t == 0) {
+                 cout << "Error sec_t" << endl;
+                 return -1;
+             }
+             else {
+                 // calculo de csc a partir de identidaes trigonometrica
+                 return 1 * divi_t(temp_sin_t);
+             }
+         } catch (const std::exception&) {
+             cout << "Error: cosecante" << endl;
+             return -1;
          }
-         else {
-             return 1 * divi_t(temp_sin_t);
-         }
+
+
+
+         // verifica que sea diferente de cero
+
 
      }
 
+     // Calculo de cotangente de un numero
+     // Estructura: cot_t(float x)
+     // Parametros: x = numero a calcular
      cpp_dec_float_50 Fun_tras::cot_t(cpp_dec_float_50 x) {
+         // calculo de tangente en caso de dar resultado calcula por identidad trigonometrica la cot
          try
          {
              cpp_dec_float_50 temp_tan_t = tan_t(x);
@@ -428,10 +498,14 @@ using namespace boost::multiprecision;
          catch (const std::exception&)
          {
              cout << "Error: cotangente" << endl;
+             return -1;
          }
          
      }
 
+     // Calculo de euler a la exponente
+     // Parametros: x = numero a calcular
+     // Estructura: exp_t(float x)
      cpp_dec_float_50 Fun_tras::exp_t(cpp_dec_float_50 x) {
          cpp_dec_float_50 sk = 0;    // Valor anterior de sumatoria
 
@@ -448,10 +522,14 @@ using namespace boost::multiprecision;
          }
      }
 
+     // Calculo de un numero a la potencia
+     // Estructura: power_t(float x)
+     // Parametros : x = numero a calcular
      cpp_dec_float_50 Fun_tras::power_t(cpp_dec_float_50 x, cpp_dec_float_50 y) {
          return exp_t(y * ln_t(x));
      }
 
+     /*
 int main(int argc, char const* argv[])
 {
     Fun_tras calc;
@@ -461,3 +539,4 @@ int main(int argc, char const* argv[])
 
     return 0;
 }
+*/

@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include "funtras.h"
+#include "helpwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -16,6 +17,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+// ActionListener de boton: selecciona la casilla de texto
 void MainWindow::inputSelected(bool selectedBox, QString num){
     if (selectedBox){
         QString tempText = ui->xInputField->toPlainText();
@@ -28,14 +30,15 @@ void MainWindow::inputSelected(bool selectedBox, QString num){
     }
 }
 
+// ActionListener de boton abre la ventana de ayuda
 void MainWindow::on_helpButton_clicked()
 {
-    //Help helpWindow;
-    //helpWindow.show();
-   // helpWindow.setFixedSize(helpWindow.size());
+    helpWindow helpWindow1;
+    helpWindow1.setModal(true);
+    helpWindow1.exec();
 }
 
-
+// ActionListener de boton limpia los inputs
 void MainWindow::on_pushButton_clicked()
 {
     ui->resultTextBrowser->clear();
@@ -44,6 +47,7 @@ void MainWindow::on_pushButton_clicked()
     // TODO: limpiar las variables en la logica
 }
 
+// ActionListener de boton ejecuta el seno
 void MainWindow::on_senhButton_clicked()
 {
     Fun_tras result_senh;
@@ -55,6 +59,7 @@ void MainWindow::on_senhButton_clicked()
     ui->resultTextBrowser->setText(resultStr);
 }
 
+// ActionListener de boton ejecuta tanh
 void MainWindow::on_tanhButton_clicked()
 {
     Fun_tras result_tanh;
@@ -66,7 +71,7 @@ void MainWindow::on_tanhButton_clicked()
     ui->resultTextBrowser->setText(resultStr);
 }
 
-
+// ActionListener de boton ejecuta cosh
 void MainWindow::on_coshButton_clicked()
 {
     Fun_tras result_cosh;
@@ -80,6 +85,7 @@ void MainWindow::on_coshButton_clicked()
 }
 
 
+// ActionListener de boton ejecuta asen
 void MainWindow::on_asenButton_clicked()
 {
     Fun_tras result_asen;
@@ -99,7 +105,7 @@ void MainWindow::on_asenButton_clicked()
 
 }
 
-
+// ActionListener de boton ejecuta acos
 void MainWindow::on_acosButton_clicked()
 {
     Fun_tras result_acos;
@@ -119,6 +125,7 @@ void MainWindow::on_acosButton_clicked()
     }
 }
 
+// ActionListener de boton ejecuta atan
 void MainWindow::on_atanButton_clicked()
 {
     Fun_tras result_atan;
@@ -130,7 +137,7 @@ void MainWindow::on_atanButton_clicked()
     ui->resultTextBrowser->setText(resultStr);
 }
 
-
+// ActionListener de boton ejecuta sec
 void MainWindow::on_secButton_clicked()
 {
     Fun_tras result_sec;
@@ -148,7 +155,7 @@ void MainWindow::on_secButton_clicked()
     }
 }
 
-
+// ActionListener de boton ejecuta csc
 void MainWindow::on_cscButton_clicked()
 {
     Fun_tras result_csc;
@@ -165,7 +172,7 @@ void MainWindow::on_cscButton_clicked()
     }
 }
 
-
+// ActionListener de boton ejecuta cot
 void MainWindow::on_cotButton_clicked()
 {
     Fun_tras result_cot;
@@ -182,6 +189,7 @@ void MainWindow::on_cotButton_clicked()
     }
 }
 
+// ActionListener de boton ejecuta sen
 void MainWindow::on_senButton_clicked()
 {
     Fun_tras result_sen;
@@ -193,6 +201,7 @@ void MainWindow::on_senButton_clicked()
     ui->resultTextBrowser->setText(resultStr);
 }
 
+// ActionListener de boton ejecuta cos
 void MainWindow::on_cosButton_clicked()
 {
     Fun_tras result_cos;
@@ -204,6 +213,7 @@ void MainWindow::on_cosButton_clicked()
     ui->resultTextBrowser->setText(resultStr);
 }
 
+// ActionListener de boton ejecuta tan
 void MainWindow::on_tanButton_clicked()
 {
     Fun_tras result_tan;
@@ -215,6 +225,7 @@ void MainWindow::on_tanButton_clicked()
     ui->resultTextBrowser->setText(resultStr);
 }
 
+// ActionListener de boton ejecuta ln
 void MainWindow::on_lnButton_clicked()
 {
     Fun_tras result_ln;
@@ -231,7 +242,7 @@ void MainWindow::on_lnButton_clicked()
     }
 }
 
-
+// ActionListener de boton ejecuta log
 void MainWindow::on_logTenButton_clicked()
 {
     Fun_tras result_logTen;
@@ -243,7 +254,7 @@ void MainWindow::on_logTenButton_clicked()
     ui->resultTextBrowser->setText(resultStr);
 }
 
-
+// ActionListener de boton ejecuta log y
 void MainWindow::on_logYButton_clicked()
 {
     Fun_tras result_logY;
@@ -263,6 +274,7 @@ void MainWindow::on_logYButton_clicked()
     }
 }
 
+// ActionListener de boton ejecuta division
 void MainWindow::on_divButton_clicked()
 {
     Fun_tras result_div;
@@ -283,6 +295,7 @@ void MainWindow::on_divButton_clicked()
 
 }
 
+// ActionListener de boton ejecuta raiz
 void MainWindow::on_sqrButton_clicked()
 {
     Fun_tras result_sqr;
@@ -301,6 +314,7 @@ void MainWindow::on_sqrButton_clicked()
     }
 }
 
+// ActionListener de boton ejecuta raiz con otro indice
 void MainWindow::on_sqrYButton_clicked()
 {
     Fun_tras result_sqrY;
@@ -320,7 +334,7 @@ void MainWindow::on_sqrYButton_clicked()
     }
 }
 
-
+// ActionListener de boton ejecuta exponencial
 void MainWindow::on_expButton_clicked()
 {
     Fun_tras result_exp;
@@ -332,7 +346,7 @@ void MainWindow::on_expButton_clicked()
     ui->resultTextBrowser->setText(resultStr);
 }
 
-
+// ActionListener de boton ejecuta potencia
 void MainWindow::on_powerYButton_clicked()
 {
     Fun_tras result_power;
@@ -352,6 +366,7 @@ void MainWindow::on_powerYButton_clicked()
     }
 }
 
+// ActionListener de boton ejecuta factorial
 void MainWindow::on_factorialButton_clicked()
 {
     Fun_tras result_fac;
@@ -363,85 +378,85 @@ void MainWindow::on_factorialButton_clicked()
     ui->resultTextBrowser->setText(resultStr);
 }
 
+// coloca numero 7 en pantalla
 void MainWindow::on_sevenButton_clicked()
 {
     inputSelected(this->xSelected, "7");
 }
 
-
+// coloca numero 8 en pantalla
 void MainWindow::on_eightButton_clicked()
 {
     inputSelected(this->xSelected, "8");
 }
 
-
+// coloca numero 9 en pantalla
 void MainWindow::on_nineButton_clicked()
 {
     inputSelected(this->xSelected, "9");
 }
 
-
+// coloca numero 4 en pantalla
 void MainWindow::on_fourButton_clicked()
 {
     inputSelected(this->xSelected, "4");
 }
 
-
+// coloca numero 5 en pantalla
 void MainWindow::on_fiveButton_clicked()
 {
     inputSelected(this->xSelected, "5");
 }
 
-
+// coloca numero 6 en pantalla
 void MainWindow::on_sixButton_clicked()
 {
     inputSelected(this->xSelected, "6");
 }
 
-
+// coloca numero 1 en pantalla
 void MainWindow::on_oneButton_clicked()
 {
     inputSelected(this->xSelected, "1");
 }
 
-
+// coloca numero 2 en pantalla
 void MainWindow::on_twoButton_clicked()
 {
     inputSelected(this->xSelected, "2");
 }
 
-
+// coloca numero 3 en pantalla
 void MainWindow::on_threeButton_clicked()
 {
     inputSelected(this->xSelected, "3");
 }
 
-
+// coloca numero pi en pantalla
 void MainWindow::on_piButton_clicked()
 {
     inputSelected(this->xSelected, "π");
 }
 
-
+// coloca numero 0 en pantalla
 void MainWindow::on_zeroButton_clicked()
 {
     inputSelected(this->xSelected, "0");
 }
 
-
-
+// Selecciona el input x donde se colocan el numero
 void MainWindow::on_xSelectionButton_clicked()
 {
     this->xSelected = true;
 }
 
-
+// Selecciona el input y donde se colocan el numero
 void MainWindow::on_pushButton_2_clicked()
 {
     this->xSelected = false;
 }
 
-
+// coloca un punto en el input
 void MainWindow::on_decButton_clicked()
 {
     inputSelected(this->xSelected, ".");
