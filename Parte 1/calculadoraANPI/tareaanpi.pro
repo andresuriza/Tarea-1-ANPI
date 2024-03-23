@@ -12,7 +12,8 @@ SOURCES += \
     helpwindow.cpp \
     main.cpp \
     mainwindow.cpp \
-    funtras.cpp
+    funtras.cpp \
+    test_funtras.cpp
 
 HEADERS += \
     helpwindow.h \
