@@ -1,6 +1,5 @@
 #include "funtras.h"
 
-
 int main(int argc, char const* argv[])
 {
     Fun_tras calc;
